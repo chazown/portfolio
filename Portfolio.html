@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5;
+            background-color: #cdd4dc; /* 배경색을 더 어둡게 조정 */
             display: flex;
             justify-content: center;
             align-items: flex-start; /* Align to top for better flow display */
@@ -22,14 +22,13 @@
             align-items: center;
             width: 100%;
             max-width: 900px;
-            background-color: #ffffff;
+            background-color: #e8ecef; /* 컨테이너 배경색을 밝은 회색으로 조정 */
             padding: 2.5rem;
             border-radius: 1rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         .step-box {
-            background-color: #e0f2f7; /* Light blue */
-            border: 1px solid #b3e5fc;
+            border: 1px solid; /* 테두리 색상은 각 스텝 색상에 맞춰 조정 */
             border-radius: 0.75rem;
             padding: 1rem 1.5rem;
             margin: 0.75rem 0;
@@ -42,11 +41,30 @@
         .step-box:hover {
             transform: translateY(-5px);
         }
+
+        /* 각 단계별 박스 색상 정의 */
         .step-box.start-end {
-            background-color: #c8e6c9; /* Light green for start/end */
+            background-color: #c8e6c9; /* 시작/완료점: 연한 녹색 */
             border-color: #a5d6a7;
             font-weight: 600;
         }
+        .step-one-color {
+            background-color: #e1f5fe; /* 단계 1: 연한 하늘색 */
+            border-color: #81d4fa;
+        }
+        .step-two-color {
+            background-color: #fffde7; /* 단계 2: 연한 노란색 */
+            border-color: #ffe082;
+        }
+        .step-three-color {
+            background-color: #fce4ec; /* 단계 3: 연한 핑크색 */
+            border-color: #f8bbd0;
+        }
+        .step-four-color {
+            background-color: #e3f2fd; /* 단계 4: 연한 파란색 */
+            border-color: #90caf9;
+        }
+
         .step-title {
             font-weight: 700;
             color: #2196f3; /* Blue */
@@ -115,7 +133,7 @@
         <div class="arrow-label">문제 인식 단계</div>
 
         <!-- 단계 1 -->
-        <div class="step-box">
+        <div class="step-box step-one-color">
             <div class="step-title">단계 1: 프로젝트 초기 논의 및 파일럿 팀 구성</div>
             <div class="step-content">
                 <p><strong>주체:</strong> 관리자 및 각 팀 실무자 (계약팀, 승인팀, 메뉴팀 등)</p>
@@ -128,7 +146,7 @@
         <div class="arrow-label">기반 마련 단계</div>
 
         <!-- 단계 2 -->
-        <div class="step-box">
+        <div class="step-box step-two-color">
             <div class="step-title">단계 2: 현행 시스템 실무 환경 검토</div>
             <div class="step-content">
                 <p><strong>주체:</strong> <strong>파일럿 팀원 (계약팀, 승인팀, 메뉴팀 실무자)</strong></p>
@@ -141,7 +159,7 @@
         <div class="arrow-label">피드백 도출 단계</div>
 
         <!-- 단계 3 -->
-        <div class="step-box">
+        <div class="step-box step-three-color">
             <div class="step-title">단계 3: 현장 피드백 수집 및 개선 의견 도출</div>
             <div class="step-content">
                 <p><strong>주체:</strong> <strong>파일럿 팀원</strong></p>
@@ -154,7 +172,7 @@
         <div class="arrow-label">의견 취합 및 전달 단계</div>
 
         <!-- 단계 4 -->
-        <div class="step-box">
+        <div class="step-box step-four-color">
             <div class="step-title">단계 4: 피드백 취합 및 핵심 개선 과제 정의</div>
             <div class="step-content">
                 <p><strong>주체:</strong> 관리자, 개발팀</p>
