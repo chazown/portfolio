@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>나의 포트폴리오</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <style>
+        html, body {
+            height: 100%; /* HTML과 Body의 높이를 100%로 설정하여 화면 전체를 차지하도록 합니다. */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* 스크롤바가 생기지 않도록 숨깁니다. */
+        }
+        .container-fluid {
+            height: 100vh; /* 뷰포트 높이의 100%를 차지하도록 합니다. */
+            display: flex;
+            flex-direction: column;
+            padding: 0; /* 컨테이너의 기본 패딩 제거 */
+        }
+        .row {
+            flex: 1; /* row가 사용 가능한 공간을 모두 차지하도록 합니다. */
+            margin: 0; /* row의 기본 마진 제거 */
+        }
+        .col-md-6 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%; /* 각 col이 부모 row의 높이를 꽉 채우도록 합니다. */
+            padding: 20px; /* 내부 여백 추가 */
+        }
+        .card {
+            width: 80%; /* 카드 너비를 조절하여 반응형으로 보일 수 있도록 합니다. */
+            max-width: 400px; /* 카드 최대 너비 설정 */
+            cursor: pointer; /* 클릭 가능한 요소임을 표시 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 호버 효과 추가 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 기본 그림자 */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* 약간 위로 뜨는 효과 */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* 그림자 강화 */
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .card-title {
+            font-size: 2.5rem; /* 카드 제목 크기 키우기 */
+            font-weight: bold;
+        }
+
+        /* 각 섹션별 배경색 */
+        #resume-section { background-color: #f8f9fa; } /* 밝은 회색 */
+        #introduction-section { background-color: #e9ecef; } /* 조금 더 진한 회색 */
+        #project1-section { background-color: #dee2e6; } /* 중간 회색 */
+        #project2-section { background-color: #ced4da; } /* 어두운 회색 */
+
+        /* 모바일 환경에서 1열로 보이도록 */
+        @media (max-width: 767.98px) {
+            .container-fluid {
+                flex-direction: column; /* 세로로 쌓이도록 변경 */
+                height: auto; /* 모바일에서는 높이 자동 조절 */
+            }
+            .col-md-6 {
+                height: 50vh; /* 각 섹션이 뷰포트 높이의 절반을 차지하도록 */
+            }
+            .card {
+                width: 90%; /* 모바일에서 카드 너비 조정 */
+                max-width: none; /* 최대 너비 제한 해제 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-center align-items-center" id="resume-section" onclick="location.href='resume.html';">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">이력서</h5>
+                        <p class="card-text text-muted">저의 경험과 역량을 한눈에 확인하세요.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-center align-items-center" id="introduction-section" onclick="location.href='introduction.html';">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">자기소개서</h5>
+                        <p class="card-text text-muted">저에 대한 이야기를 들어보세요.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-center align-items-center" id="project1-section" onclick="location.href='project1.html';">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">프로젝트 1</h5>
+                        <p class="card-text text-muted">첫 번째 주요 프로젝트를 소개합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-center align-items-center" id="project2-section" onclick="location.href='project2.html';">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">프로젝트 2</h5>
+                        <p class="card-text text-muted">두 번째 주요 프로젝트를 살펴보세요.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
