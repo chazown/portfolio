@@ -12,129 +12,192 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK+0I4"
         crossorigin="anonymous"></script>
     <style>
-        /* CSS 변수 정의 */
+        /* CSS 변수 정의 - 시원한 색상 테마로 변경 */
         :root {
-            --main-bg-color: #FF8C00; /* 참고 이미지의 주황색 계열 */
-            --primary-button-bg: white;
-            --primary-button-text: #FF8C00;
-            --secondary-color: #FF6B6B; /* 기존 호버 색상 */
-            --text-color: white;
-            --shadow-dark: rgba(0, 0, 0, 0.5); /* 그림자 농도 조절 */
-            --button-padding-large: 18px 35px;
-            --button-padding-small: 12px 25px;
+            --main-bg-color: #2C3E50; /* 깊은 차콜 블루 */
+            --accent-color: #3498DB; /* 스카이 블루 - 강조 색상 */
+            --card-bg-color: rgba(255, 255, 255, 0.1); /* 카드 배경색 (반투명 흰색) */
+            --text-color-light: white; /* 밝은 텍스트 색상 */
+            --shadow-color: rgba(0, 0, 0, 0.4); /* 그림자 색상 */
+            --button-primary-bg: var(--accent-color); /* 메인 버튼 배경 */
+            --button-primary-text: var(--text-color-light); /* 메인 버튼 텍스트 */
+            --button-secondary-bg: var(--text-color-light); /* 보조 버튼 배경 (흰색) */
+            --button-secondary-text: var(--main-bg-color); /* 보조 버튼 텍스트 (어두운 색) */
         }
 
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* 전체 페이지 스크롤 방지 유지 */
+            overflow: hidden; /* 전체 페이지 스크롤 방지 */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex; /* body를 flex 컨테이너로 만들어 hero-section이 전체를 차지하도록 */
+            display: flex;
             flex-direction: column;
+            background-color: var(--main-bg-color); /* 전체 배경색 설정 */
         }
 
         .hero-section {
-            height: 100vh; /* 뷰포트 높이 100% */
-            background-color: var(--main-bg-color); /* 주황색 배경 */
-            color: var(--text-color);
-            position: relative; /* 자식 요소의 absolute 위치 기준 */
-            flex-grow: 1; /* body flex에서 남은 공간 채우기 */
+            height: 100vh;
+            background-color: var(--main-bg-color); /* 주 배경색 */
+            color: var(--text-color-light);
+            position: relative;
+            flex-grow: 1;
+            display: flex; /* 내부 요소들을 중앙 정렬하기 위해 추가 */
+            flex-direction: column;
+            justify-content: center; /* 세로 중앙 정렬 */
+            align-items: center; /* 가로 중앙 정렬 */
+            text-align: center;
+            padding: 50px; /* 전체적인 패딩 */
+            box-sizing: border-box;
         }
 
-        /* 기존 오버레이 제거 (배경색 고정이므로 불필요) */
+        /* 오버레이는 제거 */
         .hero-overlay {
             display: none;
         }
 
         .hero-content {
-            position: absolute; /* hero-section 기준으로 위치 지정 */
-            top: 0;
-            left: 0;
+            z-index: 10;
+            max-width: 1000px; /* 전체 콘텐츠 최대 너비 제한 */
             width: 100%;
-            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* 요소들을 위, 아래, 중간으로 분산 */
-            align-items: flex-start; /* 기본적으로 왼쪽 정렬 (텍스트) */
-            padding: 50px 80px; /* 여백 추가 */
-            box-sizing: border-box; /* 패딩 포함한 크기 계산 */
+            align-items: center; /* 모든 내부 콘텐츠 중앙 정렬 */
         }
 
-        .top-left-text {
-            text-align: left; /* 좌측 상단 텍스트 */
-            animation: fadeIn 1.2s ease-out forwards; /* 애니메이션 유지 */
-        }
-
-        .top-left-text h1 {
-            font-size: 3.5rem; /* 제목 크기 조절 */
-            margin-bottom: 10px;
+        .top-intro-text h1 {
+            font-size: 3.8rem;
+            margin-bottom: 15px;
             font-weight: 700;
             letter-spacing: 1px;
-            text-shadow: 2px 2px 4px var(--shadow-dark);
+            text-shadow: 2px 2px 5px var(--shadow-color);
+            line-height: 1.2;
+            animation: fadeInDown 1.2s ease-out forwards;
         }
 
-        .top-left-text p {
-            font-size: 1.8rem; /* 부제목 크기 조절 */
+        .top-intro-text p {
+            font-size: 1.7rem;
             font-weight: 300;
             line-height: 1.4;
-            text-shadow: 1px 1px 3px var(--shadow-dark);
+            text-shadow: 1px 1px 3px var(--shadow-color);
+            margin-bottom: 40px; /* 프로젝트 섹션과의 간격 */
+            animation: fadeInDown 1.5s ease-out forwards;
         }
 
-        .bottom-right-contact {
-            align-self: flex-end; /* 우측 하단으로 이동 */
-            text-align: right; /* 텍스트 우측 정렬 */
-            animation: fadeIn 1.5s ease-out forwards; /* 애니메이션 */
-            font-size: 1.2rem;
-            line-height: 1.6;
-            text-shadow: 1px 1px 3px var(--shadow-dark);
-            margin-bottom: 20px; /* 버튼과의 간격 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 반응형 그리드 */
+            gap: 30px; /* 프로젝트 카드 간 간격 */
+            width: 100%;
+            max-width: 900px; /* 그리드 최대 너비 */
+            margin-top: 40px; /* 상단 텍스트와의 간격 */
+            animation: fadeInUp 1.8s ease-out forwards;
         }
 
-        .nav-buttons-wrapper {
-            width: 100%; /* 버튼 묶음 전체 너비 */
-            text-align: center; /* 버튼 가운데 정렬 */
-            animation: fadeIn 1.8s ease-out forwards; /* 애니메이션 */
-            margin-top: auto; /* 상단 콘텐츠에 따라 아래로 밀려나도록 */
+        .project-card {
+            background-color: var(--card-bg-color); /* 반투명 카드 배경 */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px var(--shadow-color);
+            backdrop-filter: blur(5px); /* 배경 블러 효과 */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* 은은한 테두리 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .nav-buttons {
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card h3 {
+            font-size: 2.2rem; /* 프로젝트 제목 크기 */
+            color: var(--accent-color); /* 강조 색상 */
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-buttons {
             display: flex;
             flex-wrap: wrap; /* 버튼이 넘치면 다음 줄로 */
-            justify-content: center; /* 버튼들을 가운데 정렬 */
-            gap: 15px; /* 버튼 간의 간격 */
-            width: 100%; /* 부모에 꽉 차게 */
+            justify-content: center;
+            gap: 12px; /* 버튼들 사이의 간격 */
+            width: 100%;
         }
 
-        .nav-buttons .btn {
-            font-size: 1.2rem; /* 버튼 글씨 크기 */
-            padding: 15px 30px; /* 버튼 패딩 */
-            border-radius: 50px;
+        .project-buttons .btn {
+            font-size: 1.1rem;
+            padding: 12px 25px;
+            border-radius: 40px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 */
-            font-weight: 600;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
-            background-color: var(--primary-button-bg); /* 흰색 배경 */
-            border: none;
-            color: var(--primary-button-text); /* 주황색 텍스트 */
-            min-width: 180px; /* 버튼 최소 너비 */
-            justify-content: center; /* 아이콘과 텍스트 가운데 정렬 */
+            min-width: 150px; /* 버튼 최소 너비 */
+            justify-content: center;
         }
 
-        .nav-buttons .btn:hover {
-            background-color: #EEE; /* 호버 시 약간 회색 */
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        /* 메인 프로젝트 버튼 */
+        .project-buttons .btn.main-project-btn {
+            background-color: var(--button-primary-bg);
+            border: 2px solid var(--button-primary-bg);
+            color: var(--button-primary-text);
         }
-        
-        .nav-buttons .btn i {
-            margin-right: 10px;
-            font-size: 1.4rem;
+        .project-buttons .btn.main-project-btn:hover {
+            background-color: #4FB0EE; /* 강조색보다 살짝 밝게 */
+            border-color: #4FB0EE;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 보조 (기획안/보고서) 버튼 */
+        .project-buttons .btn.sub-project-btn {
+            background-color: var(--button-secondary-bg);
+            border: 2px solid var(--button-secondary-bg);
+            color: var(--button-secondary-text);
+        }
+        .project-buttons .btn.sub-project-btn:hover {
+            background-color: #F0F0F0; /* 흰색보다 살짝 어둡게 */
+            border-color: #F0F0F0;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-buttons .btn i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .contact-info {
+            position: absolute; /* 절대 위치로 화면 우측 하단 고정 */
+            bottom: 40px;
+            right: 50px;
+            text-align: right;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-color-light);
+            text-shadow: 1px 1px 2px var(--shadow-color);
+            animation: fadeInRight 2s ease-out forwards;
         }
 
         /* 애니메이션 키프레임 */
-        @keyframes fadeIn {
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -145,40 +208,68 @@
             }
         }
 
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         /* 미디어 쿼리 for 모바일 */
         @media (max-width: 767.98px) {
-            .hero-content {
-                padding: 30px; /* 모바일 패딩 줄임 */
-                justify-content: space-around; /* 모바일에서 요소들 간격 조절 */
-                align-items: center; /* 모바일에서 중앙 정렬 */
-            }
-
-            .top-left-text {
-                text-align: center; /* 모바일 중앙 정렬 */
-            }
-            .top-left-text h1 {
-                font-size: 2.5rem;
-            }
-            .top-left-text p {
-                font-size: 1.3rem;
-            }
-
-            .bottom-right-contact {
-                align-self: center; /* 모바일 중앙 정렬 */
+            .hero-section {
+                padding: 30px 20px; /* 모바일 패딩 줄임 */
+                justify-content: flex-start; /* 상단부터 채우도록 */
+                align-items: center;
                 text-align: center;
-                font-size: 1rem;
+                overflow-y: auto; /* 모바일에서 콘텐츠가 많아지면 스크롤 가능하도록 */
+                height: auto; /* 높이 자동 조절 */
+                min-height: 100vh; /* 최소 높이는 뷰포트 높이 */
+            }
+            .hero-content {
+                justify-content: flex-start; /* 상단부터 콘텐츠 배치 */
+            }
+
+            .top-intro-text h1 {
+                font-size: 2.2rem;
                 margin-bottom: 10px;
             }
-
-            .nav-buttons-wrapper {
-                margin-top: 20px; /* 모바일 버튼 위 여백 */
+            .top-intro-text p {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
             }
 
-            .nav-buttons .btn {
+            .project-grid {
+                grid-template-columns: 1fr; /* 모바일에서는 한 줄에 하나씩 */
+                max-width: 400px;
+                margin-top: 20px;
+            }
+            .project-card {
+                padding: 20px;
+            }
+            .project-card h3 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            .project-buttons .btn {
                 font-size: 1rem;
                 padding: 10px 20px;
-                margin: 5px; /* 모바일 버튼 간격 */
-                min-width: 150px;
+                min-width: 130px;
+            }
+
+            .contact-info {
+                position: static; /* 모바일에서는 정적 위치로 변경하여 하단에 자연스럽게 배치 */
+                margin-top: 40px;
+                margin-bottom: 20px;
+                right: auto;
+                bottom: auto;
+                text-align: center;
+                width: 100%;
+                animation: none; /* 애니메이션 제거 */
             }
         }
     </style>
@@ -187,38 +278,47 @@
 <body>
     <header class="hero-section">
         <div class="hero-content">
-            <div class="top-left-text">
-                <h1>네트워크 안의 개인정보</h1>
-                <p>강력한 방패를 구축하는 윤여엘입니다.</p>
+            <div class="top-intro-text">
+                <h1>네트워크 속의 개인정보</h1>
+                <p>강력한 방패를 두들기고 있는 윤여엘입니다.</p>
             </div>
 
-            <div class="bottom-right-contact">
-                <p>지원자 윤여엘</p>
-                <p>010-4489-0511X</p> <p>your_email@example.com</p> </div>
-
-            <div class="nav-buttons-wrapper">
-                <div class="nav-buttons">
-                    <a href="https://chazown.github.io/Portfolio/security" class="btn">
-                        <i class="bi bi-journal-check"></i> 프로젝트 1: 기업 내외부망 구축
-                    </a>
-                    <a href="https://chazown.github.io/Portfolio/documents/security_planning.pdf" class="btn" target="_blank">
-                        <i class="bi bi-file-earmark-text"></i> 프로젝트 1 기획안
-                    </a>
-                    <a href="https://chazown.github.io/Portfolio/documents/security_report.pdf" class="btn" target="_blank">
-                        <i class="bi bi-file-earmark-text"></i> 프로젝트 1 보고서
-                    </a>
-                    <a href="https://chazown.github.io/Portfolio/onestop" class="btn">
-                        <i class="bi bi-journal-check"></i> 프로젝트 2: 전자계약서 리뉴얼
-                    </a>
-                    <a href="https://chazown.github.io/Portfolio/documents/onestop_planning.pdf" class="btn" target="_blank">
-                        <i class="bi bi-file-earmark-text"></i> 프로젝트 2 기획안
-                    </a>
-                    <a href="https://chazown.github.io/Portfolio/documents/onestop_report.pdf" class="btn" target="_blank">
-                        <i class="bi bi-file-earmark-text"></i> 프로젝트 2 보고서
-                    </a>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>기업 내외부망 구축</h3>
+                    <div class="project-buttons">
+                        <a href="https://chazown.github.io/Portfolio/security" class="btn main-project-btn">
+                            <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
+                        </a>
+                        <a href="https://chazown.github.io/Portfolio/documents/security_planning.pdf" class="btn sub-project-btn" target="_blank">
+                            <i class="bi bi-file-earmark-text"></i> 기획안
+                        </a>
+                        <a href="https://chazown.github.io/Portfolio/documents/security_report.pdf" class="btn sub-project-btn" target="_blank">
+                            <i class="bi bi-file-earmark-text"></i> 보고서
+                        </a>
+                    </div>
                 </div>
-            </div>
+
+                <div class="project-card">
+                    <h3>전자계약시스템 리뉴얼</h3>
+                    <div class="project-buttons">
+                        <a href="https://chazown.github.io/Portfolio/onestop" class="btn main-project-btn">
+                            <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
+                        </a>
+                        <a href="https://chazown.github.io/Portfolio/documents/onestop_planning.pdf" class="btn sub-project-btn" target="_blank">
+                            <i class="bi bi-file-earmark-text"></i> 기획안
+                        </a>
+                        <a href="https://chazown.github.io/Portfolio/documents/onestop_report.pdf" class="btn sub-project-btn" target="_blank">
+                            <i class="bi bi-file-earmark-text"></i> 보고서
+                        </a>
+                    </div>
+                </div>
+
+                </div>
         </div>
+        <div class="contact-info">
+            <p>지원자 윤여엘</p>
+            <p>010-XXXX-XXXX</p> <p>your_email@example.com</p> </div>
     </header>
 </body>
 
