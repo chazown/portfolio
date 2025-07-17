@@ -14,11 +14,12 @@
     <style>
         /* CSS 변수 정의 */
         :root {
-            --primary-color: #4A90E2;
-            --secondary-color: #FF6B6B;
+            --main-bg-color: #FF8C00; /* 참고 이미지의 주황색 계열 */
+            --primary-button-bg: white;
+            --primary-button-text: #FF8C00;
+            --secondary-color: #FF6B6B; /* 기존 호버 색상 */
             --text-color: white;
-            --overlay-color: rgba(0, 0, 0, 0.6);
-            --shadow-dark: rgba(0, 0, 0, 0.8);
+            --shadow-dark: rgba(0, 0, 0, 0.5); /* 그림자 농도 조절 */
             --button-padding-large: 18px 35px;
             --button-padding-small: 12px 25px;
         }
@@ -27,117 +28,157 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            /* overflow: hidden; */
+            overflow: hidden; /* 전체 페이지 스크롤 방지 유지 */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex; /* body를 flex 컨테이너로 만들어 hero-section이 전체를 차지하도록 */
+            flex-direction: column;
         }
 
         .hero-section {
-            height: 100vh;
-            background: url('https://source.unsplash.com/random/1920x1080/?nature,technology,cityscape') no-repeat center center/cover;
-            
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            height: 100vh; /* 뷰포트 높이 100% */
+            background-color: var(--main-bg-color); /* 주황색 배경 */
             color: var(--text-color);
-            text-shadow: 2px 2px 6px var(--shadow-dark);
-            position: relative;
+            position: relative; /* 자식 요소의 absolute 위치 기준 */
+            flex-grow: 1; /* body flex에서 남은 공간 채우기 */
         }
 
+        /* 기존 오버레이 제거 (배경색 고정이므로 불필요) */
         .hero-overlay {
-            position: absolute;
+            display: none;
+        }
+
+        .hero-content {
+            position: absolute; /* hero-section 기준으로 위치 지정 */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--overlay-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* 요소들을 위, 아래, 중간으로 분산 */
+            align-items: flex-start; /* 기본적으로 왼쪽 정렬 (텍스트) */
+            padding: 50px 80px; /* 여백 추가 */
+            box-sizing: border-box; /* 패딩 포함한 크기 계산 */
         }
 
-        .hero-content {
-            z-index: 10;
-            text-align: center;
-            padding: 0 20px;
-            animation: fadeInScale 1.2s ease-out forwards;
+        .top-left-text {
+            text-align: left; /* 좌측 상단 텍스트 */
+            animation: fadeIn 1.2s ease-out forwards; /* 애니메이션 유지 */
         }
 
-        .hero-content h1 {
-            font-size: 5rem;
-            margin-bottom: 25px;
+        .top-left-text h1 {
+            font-size: 3.5rem; /* 제목 크기 조절 */
+            margin-bottom: 10px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px var(--shadow-dark);
         }
 
-        .hero-content p {
-            font-size: 2rem;
-            margin-bottom: 50px;
+        .top-left-text p {
+            font-size: 1.8rem; /* 부제목 크기 조절 */
             font-weight: 300;
-            max-width: 900px;
-            line-height: 1.5;
+            line-height: 1.4;
+            text-shadow: 1px 1px 3px var(--shadow-dark);
+        }
+
+        .bottom-right-contact {
+            align-self: flex-end; /* 우측 하단으로 이동 */
+            text-align: right; /* 텍스트 우측 정렬 */
+            animation: fadeIn 1.5s ease-out forwards; /* 애니메이션 */
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px var(--shadow-dark);
+            margin-bottom: 20px; /* 버튼과의 간격 */
+        }
+
+        .nav-buttons-wrapper {
+            width: 100%; /* 버튼 묶음 전체 너비 */
+            text-align: center; /* 버튼 가운데 정렬 */
+            animation: fadeIn 1.8s ease-out forwards; /* 애니메이션 */
+            margin-top: auto; /* 상단 콘텐츠에 따라 아래로 밀려나도록 */
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap; /* 버튼이 넘치면 다음 줄로 */
+            justify-content: center; /* 버튼들을 가운데 정렬 */
+            gap: 15px; /* 버튼 간의 간격 */
+            width: 100%; /* 부모에 꽉 차게 */
         }
 
         .nav-buttons .btn {
-            font-size: 1.3rem;
-            padding: var(--button-padding-large);
-            margin: 0 12px;
+            font-size: 1.2rem; /* 버튼 글씨 크기 */
+            padding: 15px 30px; /* 버튼 패딩 */
             border-radius: 50px;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 */
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            background-color: var(--primary-color);
+            background-color: var(--primary-button-bg); /* 흰색 배경 */
             border: none;
-            color: var(--text-color);
+            color: var(--primary-button-text); /* 주황색 텍스트 */
+            min-width: 180px; /* 버튼 최소 너비 */
+            justify-content: center; /* 아이콘과 텍스트 가운데 정렬 */
         }
 
         .nav-buttons .btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            filter: none;
+            background-color: #EEE; /* 호버 시 약간 회색 */
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
         
         .nav-buttons .btn i {
             margin-right: 10px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
 
         /* 애니메이션 키프레임 */
-        @keyframes fadeInScale {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: scale(0.95);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: translateY(0);
             }
         }
 
         /* 미디어 쿼리 for 모바일 */
         @media (max-width: 767.98px) {
-            .hero-content h1 {
-                font-size: 3rem;
+            .hero-content {
+                padding: 30px; /* 모바일 패딩 줄임 */
+                justify-content: space-around; /* 모바일에서 요소들 간격 조절 */
+                align-items: center; /* 모바일에서 중앙 정렬 */
             }
-            .hero-content p {
+
+            .top-left-text {
+                text-align: center; /* 모바일 중앙 정렬 */
+            }
+            .top-left-text h1 {
+                font-size: 2.5rem;
+            }
+            .top-left-text p {
                 font-size: 1.3rem;
-                margin-bottom: 30px;
             }
-            .nav-buttons {
-                display: flex;
-                flex-direction: column;
-                width: 90%;
-                max-width: 350px;
+
+            .bottom-right-contact {
+                align-self: center; /* 모바일 중앙 정렬 */
+                text-align: center;
+                font-size: 1rem;
+                margin-bottom: 10px;
             }
+
+            .nav-buttons-wrapper {
+                margin-top: 20px; /* 모바일 버튼 위 여백 */
+            }
+
             .nav-buttons .btn {
-                font-size: 1.1rem;
-                padding: var(--button-padding-small);
-                margin: 8px 0;
-                width: 100%;
-                justify-content: center;
-            }
-            .nav-buttons .btn i {
-                font-size: 1.3rem;
+                font-size: 1rem;
+                padding: 10px 20px;
+                margin: 5px; /* 모바일 버튼 간격 */
+                min-width: 150px;
             }
         }
     </style>
@@ -145,23 +186,38 @@
 
 <body>
     <header class="hero-section">
-        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>기업의 자산을 지키는 정보 보안 전문가, 윤여엘입니다.</h1> <p>저의 주요 프로젝트들을 소개합니다.</p>
-            <nav class="nav-buttons">
-                <a href="https://chazown.github.io/Portfolio/security" class="btn">
-                    <i class="bi bi-journal-check"></i> 프로젝트 1: 기업 내외부망 보안 시스템 구축
-                </a>
-                <a href="https://chazown.github.io/Portfolio/documents/security_planning.pdf" class="btn" target="_blank">
-                    <i class="bi bi-file-earmark-text"></i> 프로젝트 1 기획안 보기
-                </a>
-                <a href="https://chazown.github.io/Portfolio/onestop" class="btn">
-                    <i class="bi bi-journal-check"></i> 프로젝트 2: 전자계약시스템 리뉴얼
-                </a>
-                <a href="https://chazown.github.io/Portfolio/documents/onestop_planning.pdf" class="btn" target="_blank">
-                    <i class="bi bi-file-earmark-text"></i> 프로젝트 2 기획안 보기
-                </a>
-            </nav>
+            <div class="top-left-text">
+                <h1>네트워크 안의 개인정보</h1>
+                <p>강력한 방패를 구축하는 윤여엘입니다.</p>
+            </div>
+
+            <div class="bottom-right-contact">
+                <p>지원자 윤여엘</p>
+                <p>010-4489-0511X</p> <p>your_email@example.com</p> </div>
+
+            <div class="nav-buttons-wrapper">
+                <div class="nav-buttons">
+                    <a href="https://chazown.github.io/Portfolio/security" class="btn">
+                        <i class="bi bi-journal-check"></i> 프로젝트 1: 기업 내외부망 구축
+                    </a>
+                    <a href="https://chazown.github.io/Portfolio/documents/security_planning.pdf" class="btn" target="_blank">
+                        <i class="bi bi-file-earmark-text"></i> 프로젝트 1 기획안
+                    </a>
+                    <a href="https://chazown.github.io/Portfolio/documents/security_report.pdf" class="btn" target="_blank">
+                        <i class="bi bi-file-earmark-text"></i> 프로젝트 1 보고서
+                    </a>
+                    <a href="https://chazown.github.io/Portfolio/onestop" class="btn">
+                        <i class="bi bi-journal-check"></i> 프로젝트 2: 전자계약서 리뉴얼
+                    </a>
+                    <a href="https://chazown.github.io/Portfolio/documents/onestop_planning.pdf" class="btn" target="_blank">
+                        <i class="bi bi-file-earmark-text"></i> 프로젝트 2 기획안
+                    </a>
+                    <a href="https://chazown.github.io/Portfolio/documents/onestop_report.pdf" class="btn" target="_blank">
+                        <i class="bi bi-file-earmark-text"></i> 프로젝트 2 보고서
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
 </body>
