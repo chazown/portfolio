@@ -1,157 +1,164 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>기업 내외부망 보안 프로젝트 개요 도식</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #dbe1e8; /* 배경색 조정 */
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            padding: 2rem;
-            box-sizing: border-box;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 900px;
-            background-color: #f0f0f0; /* 컨테이너 배경색 조정 */
-            padding: 2.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        .section-box {
-            border: 1px solid;
-            border-radius: 0.75rem;
-            padding: 1rem 1.5rem;
-            margin: 0.75rem 0;
-            width: 100%;
-            max-width: 550px; /* 박스 너비 약간 넓게 조정 */
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease-in-out;
-        }
-        .section-box:hover {
-            transform: translateY(-5px);
-        }
-
-        /* 각 섹션별 박스 색상 정의 */
-        .section-modeling {
-            background-color: #e3f2fd; /* 연한 파란색 */
-            border-color: #90caf9;
-        }
-        .section-architecture {
-            background-color: #e8f5e9; /* 연한 녹색 */
-            border-color: #a5d6a7;
-        }
-        .section-vulnerability {
-            background-color: #fff3e0; /* 연한 주황색 */
-            border-color: #ffcc80;
-        }
-
-        .section-title {
-            font-weight: 700;
-            color: #1976d2; /* 진한 파란색 */
-            margin-bottom: 0.5rem;
-            font-size: 1.25rem; /* text-xl */
-        }
-        .section-content {
-            font-size: 0.95rem;
-            color: #4a4a4a;
-            line-height: 1.4;
-            text-align: left;
-        }
-        .section-content strong {
-            color: #0d47a1; /* Darker blue for emphasis */
-        }
-        .arrow {
-            font-size: 2.5rem; /* 화살표 크기 키움 */
-            color: #616161;
-            margin: 0.5rem 0;
-            font-weight: 300;
-        }
-        .arrow-label {
-            font-size: 0.9rem; /* 화살표 라벨 크기 조정 */
-            color: #757575;
-            margin-top: -0.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1.5rem;
-            }
-            .section-box {
-                padding: 0.75rem 1rem;
-                max-width: 100%;
-            }
-            .section-title {
-                font-size: 1.125rem;
-            }
-            .section-content {
-                font-size: 0.875rem;
-            }
-            .arrow {
-                font-size: 2rem;
-            }
-            .arrow-label {
-                font-size: 0.8rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>기업 내외부망 보안 프로젝트 개요 도식</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #dbe1e8;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      background-color: #f0f0f0;
+      padding: 2.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .section-box {
+      border: 1px solid;
+      border-radius: 0.75rem;
+      padding: 1rem 1.5rem;
+      margin: 0.75rem 0;
+      width: 100%;
+      max-width: 550px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease-in-out;
+    }
+    .section-box:hover {
+      transform: translateY(-5px);
+    }
+    .section-modeling {
+      background-color: #e3f2fd;
+      border-color: #90caf9;
+    }
+    .section-architecture {
+      background-color: #e8f5e9;
+      border-color: #a5d6a7;
+    }
+    .section-vulnerability {
+      background-color: #fff3e0;
+      border-color: #ffcc80;
+    }
+    .section-title {
+      font-weight: 700;
+      color: #1976d2;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+    .section-content {
+      font-size: 0.95rem;
+      color: #4a4a4a;
+      line-height: 1.4;
+      text-align: left;
+    }
+    .section-content strong {
+      color: #0d47a1;
+    }
+    .arrow {
+      font-size: 2.5rem;
+      color: #616161;
+      margin: 0.5rem 0;
+      font-weight: 300;
+    }
+    .arrow-label {
+      font-size: 0.9rem;
+      color: #757575;
+      margin-top: -0.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem;
+      }
+      .section-box {
+        padding: 0.75rem 1rem;
+        max-width: 100%;
+      }
+      .section-title {
+        font-size: 1.125rem;
+      }
+      .section-content {
+        font-size: 0.875rem;
+      }
+      .arrow {
+        font-size: 2rem;
+      }
+      .arrow-label {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">기업 내외부망 보안 시스템 구축 프로젝트 개요</h1>
+  <div class="container">
 
-        <!-- 섹션 1: 기업 환경 모델링 -->
-        <div class="section-box section-modeling">
-            <div class="section-title">1. 기업 환경 모델링</div>
-            <div class="section-content">
-                <p><strong>대상:</strong> 가상의 대형 식품기업 모델링</p>
-                <p><strong>구성:</strong> 본사(DNS 할당), 지사(DHCP, Web 운영), 협력사(별개 DNS)</p>
-                <p><strong>접근:</strong> 본사 DMZ 통해 외부 고객 접근 가능</p>
-                <p><strong>구현:</strong> GNS3를 통한 네트워크 가상화 구현</p>
-            </div>
-        </div>
-
-        <div class="arrow">↓</div>
-        <div class="arrow-label">기반 환경 구축</div>
-
-        <!-- 섹션 2: 보안 아키텍처 설계 -->
-        <div class="section-box section-architecture">
-            <div class="section-title">2. 보안 아키텍처 설계</div>
-            <div class="section-content">
-                <p><strong>네트워크 분리:</strong> 내부망/외부망 분리</p>
-                <p><strong>방화벽:</strong> 각 구간 경계에 pfSense 방화벽 배치</p>
-                <p><strong>DMZ:</strong> 웹 서버, 메일 서버 위치</p>
-                <p><strong>내부 위협 탐지:</strong> 내부망 초입에 IDS 배치</p>
-                <p><strong>접근 제어:</strong> 외부 접근 ACL 정책(포트/서비스 기준) 제어</p>
-                <p><strong>데이터 무결성:</strong> 사용자 인증 정책 설정</p>
-            </div>
-        </div>
-
-        <div class="arrow">↓</div>
-        <div class="arrow-label">보안 체계 확립</div>
-
-        <!-- 섹션 3: 취약점 탐지 및 대응 전략 수립 -->
-        <div class="section-box section-vulnerability">
-            <div class="section-title">3. 취약점 탐지 및 대응 전략 수립</div>
-            <div class="section-content">
-                <p><strong>탐지 도구:</strong> Metasploit, nmap 활용 모의침투 테스트</p>
-                <p><strong>탐지 취약점:</strong> FTP 익명 접근 허용, 잘못 구성된 SNMP 접근</p>
-                <p><strong>대응 전략:</strong> 포트 차단, 버전 업데이트, 접근 IP 제한 ACL 설정, IDS 정책 강화 등 실행</p>
-            </div>
-        </div>
+    <!-- 안내 박스 추가 -->
+    <div class="w-full flex justify-end mb-4">
+      <div class="bg-yellow-100 border border-yellow-400 text-yellow-800 text-sm px-4 py-2 rounded shadow leading-relaxed">
+        ⚠️ 본 문서는 <strong>세미 프로젝트 단계</strong>에서 작성된 <strong>간략본</strong>입니다.<br>
+        추후 <strong>파이널 프로젝트 완료 시 공식 문서로 대체</strong>될 예정입니다.
+      </div>
     </div>
+
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
+      기업 내외부망 보안 시스템 구축 프로젝트 개요
+    </h1>
+
+    <!-- 섹션 1 -->
+    <div class="section-box section-modeling">
+      <div class="section-title">1. 기업 환경 모델링</div>
+      <div class="section-content">
+        <p><strong>대상:</strong> 가상의 대형 식품기업 모델링</p>
+        <p><strong>구성:</strong> 본사(DNS 할당), 지사(DHCP, Web 운영), 협력사(별개 DNS)</p>
+        <p><strong>접근:</strong> 본사 DMZ 통해 외부 고객 접근 가능</p>
+        <p><strong>구현:</strong> GNS3를 통한 네트워크 가상화 구현</p>
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+    <div class="arrow-label">기반 환경 구축</div>
+
+    <!-- 섹션 2 -->
+    <div class="section-box section-architecture">
+      <div class="section-title">2. 보안 아키텍처 설계</div>
+      <div class="section-content">
+        <p><strong>네트워크 분리:</strong> 내부망/외부망 분리</p>
+        <p><strong>방화벽:</strong> 각 구간 경계에 pfSense 방화벽 배치</p>
+        <p><strong>DMZ:</strong> 웹 서버, 메일 서버 위치</p>
+        <p><strong>내부 위협 탐지:</strong> 내부망 초입에 IDS 배치</p>
+        <p><strong>접근 제어:</strong> 외부 접근 ACL 정책(포트/서비스 기준) 제어</p>
+        <p><strong>데이터 무결성:</strong> 사용자 인증 정책 설정</p>
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+    <div class="arrow-label">보안 체계 확립</div>
+
+    <!-- 섹션 3 -->
+    <div class="section-box section-vulnerability">
+      <div class="section-title">3. 취약점 탐지 및 대응 전략 수립</div>
+      <div class="section-content">
+        <p><strong>탐지 도구:</strong> Metasploit, nmap 활용 모의침투 테스트</p>
+        <p><strong>탐지 취약점:</strong> FTP 익명 접근 허용, 잘못 구성된 SNMP 접근</p>
+        <p><strong>대응 전략:</strong> 포트 차단, 버전 업데이트, 접근 IP 제한 ACL 설정, IDS 정책 강화 등 실행</p>
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>
