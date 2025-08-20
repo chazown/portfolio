@@ -1,54 +1,58 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IaC 보안 자동화 구축</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: sans-serif;
-    }
-    .document-container {
-      display: flex;
-      height: 100vh;
-      width: 100vw;
-    }
-    .document-pane {
-      flex: 1;
-      height: 100%;
-      border: 1px solid #ddd;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-    }
-    .document-pane h2 {
-      text-align: center;
-      margin: 10px 0;
-      color: #333;
-    }
-    .pdf-viewer {
-      flex-grow: 1;
-      border: none;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IaC 보안 자동화 구축</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    
+    .document-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+    
+    .document-pane {
+      flex: 1;
+      height: 100%;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .document-pane h2 {
+      text-align: center;
+      margin: 10px 0;
+      color: #333;
+    }
+    
+    .pdf-viewer {
+      flex-grow: 1;
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+   </style>
 </head>
 <body>
 <div class="document-container">
-    <div class="document-pane">
-        <h2>IaC 보안 자동화 구축 기획서</h2>
-        <iframe class="pdf-viewer" src="./web/viewer.html?file=../final_plan.pdf"></iframe>
-    </div>
-    
-    <div class="document-pane">
-        <h2>IaC 보안 자동화 구축 결과보고서</h2>
-        <iframe class="pdf-viewer" src="./web/viewer.html?file=../final_report.pdf"></iframe>
-    </div>
+    <div class="document-pane">
+        <h2>IaC 보안 자동화 구축 기획서</h2>
+        <iframe class="pdf-viewer" src="./web/viewer.html?file=../final_plan.pdf"></iframe>
+    </div>
+    
+    <div class="document-pane">
+        <h2>IaC 보안 자동화 구축 결과보고서</h2>
+        <iframe class="pdf-viewer" src="./web/viewer.html?file=../final_report.pdf"></iframe>
+    </div>
 </div>
 </body>
 </html>
