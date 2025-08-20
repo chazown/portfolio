@@ -12,13 +12,11 @@
       overflow: hidden;
       font-family: sans-serif;
     }
-    
     .document-container {
       display: flex;
       height: 100vh;
       width: 100vw;
     }
-    
     .document-pane {
       flex: 1;
       height: 100%;
@@ -27,17 +25,16 @@
       display: flex;
       flex-direction: column;
     }
-    
     .document-pane h2 {
       text-align: center;
       margin: 10px 0;
       color: #333;
     }
-    
-    .document-pane iframe {
-      width: 100%;
+    .pdf-viewer {
       flex-grow: 1;
       border: none;
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
@@ -45,12 +42,12 @@
 <div class="document-container">
     <div class="document-pane">
         <h2>IaC 보안 자동화 구축 기획서</h2>
-        <iframe src="https://docs.google.com/viewer?url=https://github.com/chazown/portfolio/raw/main/final_plan.pdf&embedded=true"></iframe>
+        <iframe class="pdf-viewer" src="./web/viewer.html?file=https://github.com/chazown/portfolio/raw/main/final_plan.pdf"></iframe>
     </div>
     
     <div class="document-pane">
         <h2>IaC 보안 자동화 구축 결과보고서</h2>
-        <iframe src="https://docs.google.com/viewer?url=https://github.com/chazown/portfolio/raw/main/final_report.pdf&embedded=true"></iframe>
+        <iframe class="pdf-viewer" src="./web/viewer.html?file=https://github.com/chazown/portfolio/raw/main/final_report.pdf"></iframe>
     </div>
 </div>
 </body>
