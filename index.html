@@ -87,6 +87,33 @@
             animation: fadeInDown 1.5s ease-out forwards;
         }
 
+        /* ⭐⭐ 추가된 부분 ⭐⭐ */
+        .project-card p {
+            font-size: 1rem;
+            color: #cccccc;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        /* tech-stack 클래스를 tools로 변경 */
+        .tools {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background-color: var(--accent-color);
+            color: var(--text-color-light);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        /* ⭐⭐ 추가된 부분 끝 ⭐⭐ */
+
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 반응형 그리드 */
@@ -252,6 +279,16 @@
             <div class="project-grid">
                 <div class="project-card">
                     <h3>IaC 보안 자동화 구축</h3>
+                    <p>
+                        Terraform과 Ansible을 활용하여 클라우드 인프라의 보안 취약점을 자동으로 점검하고, 보안 정책을 배포하는 솔루션입니다.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="badge">Linux</span>
+                        <span class="badge">Python</span>
+                        <span class="badge">Ansible</span>
+                        <span class="badge">Elasticsearch</span>
+                        <span class="badge">방화벽</span>
+                    </div>
                     <div class="project-buttons">
                         <a href="https://chazown.github.io/portfolio/security" class="btn" target="_blank">
                             <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
@@ -260,7 +297,14 @@
                 </div>
 
                 <div class="project-card">
-                    <h3>전자계약 시스템 리뉴얼</h3>
+                    <h3>전자계약 시스템 개편 선행 작업</h3>
+                    <p>
+                        기존 전자계약 시스템의 오류를 분석하고 개편 방향을 제안하기 위한 **데이터 분석 및 기획**을 담당했습니다. 엑셀과 SQL을 활용하여 계약서 데이터의 정합성을 검증하고, 오류 패턴을 도출하여 시스템 개선 방안을 마련했습니다.
+                    </p>
+                    <div class="tools">
+                        <span class="badge">Excel</span>
+                        <span class="badge">SQL</span>
+                    </div>
                     <div class="project-buttons">
                         <a href="https://chazown.github.io/portfolio/onestop" class="btn" target="_blank">
                             <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
@@ -268,11 +312,13 @@
                     </div>
                 </div>
 
-                </div>
+            </div>
         </div>
         <div class="contact-info">
             <p>지원자 윤여엘</p>
-            <p>010-4489-0511</p> <p>yeoel99@gmail.com</p> </div>
+            <p>010-4489-0511</p>
+            <p>yeoel99@gmail.com</p>
+        </div>
     </header>
 </body>
 
