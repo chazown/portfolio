@@ -25,8 +25,7 @@
             --button-padding: 15px 30px;
         }
 
-        html,
-        body {
+        html, body {
             height: 100%;
             margin: 0;
             padding: 0;
@@ -85,6 +84,22 @@
             line-height: 1.4;
             text-shadow: 1px 1px 3px var(--shadow-color);
             animation: fadeInDown 1.5s ease-out forwards;
+        }
+        
+        /* 추가/수정된 CSS */
+        .project-card p {
+            font-size: 0.9rem;
+            color: #cccccc;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            min-height: 50px;
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap; /* ⭐ 아이콘이 많아지면 줄 바꿈되도록 추가 ⭐ */
         }
 
         .project-grid {
@@ -173,39 +188,18 @@
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @media (max-width: 767.98px) {
@@ -277,18 +271,39 @@
             <div class="project-grid">
                 <div class="project-card">
                     <h3>IaC 보안 자동화 구축</h3>
+                    <p>
+                        Ansible과 SOAR를 이용하여 보안 위협 대응을 자동화
+                    </p>
                     <div class="project-buttons">
                         <a href="https://chazown.github.io/portfolio/security" class="btn" target="_blank">
                             <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
                         </a>
                     </div>
+                    <div class="icon-container">
+                        <i class="bi bi-linux" style="font-size: 1.5rem; color: #f39c12;" title="Linux"></i>
+                        <i class="bi bi-code-slash" style="font-size: 1.5rem; color: #3498db;" title="Python"></i>
+                        <i class="bi bi-gear-fill" style="font-size: 1.5rem; color: #e67e22;" title="Ansible"></i>
+                        <i class="bi bi-diagram-3-fill" style="font-size: 1.5rem; color: #2ecc71;" title="SOAR"></i>
+                        <i class="bi bi-search" style="font-size: 1.5rem; color: #9b59b6;" title="Elasticsearch"></i>
+                        <i class="bi bi-router-fill" style="font-size: 1.5rem; color: #2c3e50;" title="방화벽"></i>
+                        <i class="bi bi-lightning-fill" style="font-size: 1.5rem; color: #e74c3c;" title="Wireshark"></i>
+                    </div>
                 </div>
                 <div class="project-card">
-                    <h3>전자계약 시스템 리뉴얼</h3>
+                    <h3>전자계약 시스템 개편 선행 작업</h3>
+                    <p>
+                        지연없는 신속한 승인을 위한 프로세스 개선을 목표
+                    </p>
                     <div class="project-buttons">
                         <a href="https://chazown.github.io/portfolio/onestop" class="btn" target="_blank">
                             <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
                         </a>
+                    </div>
+                    <div class="icon-container">
+                        <i class="bi bi-file-earmark-excel-fill" style="font-size: 1.5rem; color: #20774a;" title="Excel"></i>
+                        <i class="bi bi-chat-square-text-fill" style="font-size: 1.5rem; color: #3498db;" title="메신저"></i>
+                        <i class="bi bi-router-fill" style="font-size: 1.5rem; color: #2c3e50;" title="Cisco"></i>
+                        <i class="bi bi-database-fill-gear" style="font-size: 1.5rem; color: #4682b4;" title="SQL"></i>
                     </div>
                 </div>
             </div>
