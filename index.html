@@ -85,6 +85,49 @@ body, html {
     text-align:center;
 }
 
+/* 프로필 카드 */
+.profile-card {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    max-width:1000px;
+    margin:50px auto;
+    padding:30px;
+    background-color: var(--card-bg-color);
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 8px 16px var(--shadow-color);
+    backdrop-filter: blur(5px);
+}
+
+.profile-card .photo {
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    border:2px dashed #fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.9rem;
+    color:#fff;
+}
+
+.profile-card .photo img {
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    border:none;
+}
+
+.profile-card .profile-text {
+    flex:1;
+    font-size:1.2rem;
+    line-height:1.6;
+}
+
+/* 프로젝트 카드 */
 .project-grid {
     display:flex;
     flex-wrap:wrap;
@@ -100,8 +143,13 @@ body, html {
     backdrop-filter: blur(5px);
     border:1px solid rgba(255,255,255,0.2);
     text-align:center;
-    max-width:400px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width:auto;       /* 텍스트 길이에 맞게 확장 */
+    min-width:300px;
+    max-width:600px;
 }
 
 .project-card:hover {
@@ -184,8 +232,10 @@ body, html {
 @media(max-width:767.98px) {
     .hero-section h1 { font-size:2.2rem; }
     .hero-section p { font-size:1.2rem; }
-    .project-card { max-width:100%; }
+    .project-card { width:100%; }
     .tech-table { width:100%; }
+    .profile-card { flex-direction:column; text-align:center; }
+    .profile-card .profile-text { margin-top:20px; }
 }
 </style>
 </head>
@@ -196,6 +246,7 @@ body, html {
   <div class="container-fluid">
     <ul class="navbar-nav">
       <li class="nav-item"><a class="nav-link" href="#intro">소개</a></li>
+      <li class="nav-item"><a class="nav-link" href="#profile">프로필</a></li>
       <li class="nav-item"><a class="nav-link" href="#techstack">기술스택</a></li>
       <li class="nav-item"><a class="nav-link" href="#projects">프로젝트</a></li>
       <li class="nav-item"><a class="nav-link" href="#contact">연락처</a></li>
@@ -206,7 +257,18 @@ body, html {
 <!-- 소개 영역 -->
 <section id="intro" class="hero-section">
     <h1>안전한 미래를 위해 보안을 더하다.</h1>
-    <p>최적의 보안 컨설팅과 기술 지원으로 소중한 디지털 자산을 지켜드리겠습니다.</p>
+    <p>최적의 보안 컨설팅과 기술 지원으로 소중한 디지털 자산을 지켜드립니다.</p>
+</section>
+
+<!-- 프로필 영역 -->
+<section id="profile">
+    <div class="profile-card">
+        <div class="photo">사진 영역</div>
+        <div class="profile-text">
+            고객 맞춤형 보안 컨설팅을 지원하고자 하는 윤여엘입니다. <br>
+            다양한 보안 기술과 경험을 바탕으로 최적의 솔루션을 제공합니다.
+        </div>
+    </div>
 </section>
 
 <!-- 기술스택 영역 -->
