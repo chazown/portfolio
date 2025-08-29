@@ -3,208 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>전자계약시스템 개편 프로젝트 진행 구조</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>전자계약 원스탑 프로젝트</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* 커스텀 CSS (Tailwind overrides 및 추가 스타일) */
-        body {
-            font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트 적용 */
-            background-color: #e0e6ed; /* 밝고 부드러운 배경색 */
+        /* 기본 스타일 및 폰트 설정 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Noto Sans KR', sans-serif;
             display: flex;
-            justify-content: center;
-            align-items: flex-start; /* 상단 정렬 유지 */
-            min-height: 100vh;
-            padding: 2rem;
-            box-sizing: border-box;
+            justify-content: center; /* 수평 중앙 정렬 */
+            align-items: center; /* 수직 중앙 정렬 */
+            background-color: #f0f2f5;
         }
-        .container {
+
+        /* 단일 문서 컨테이너: 화면 중앙에 배치 */
+        .document-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
             width: 100%;
-            max-width: 900px; /* 컨테이너 최대 너비 */
-            background-color: #ffffff; /* 컨테이너 배경색 흰색 */
-            padding: 2.5rem;
-            border-radius: 1.5rem; /* 더 부드러운 모서리 */
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* 더 깊은 그림자 */
+            max-width: 900px; /* 원하는 최대 너비 설정 */
+            height: 90vh; /* 화면 높이에 맞춤 */
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #ffffff;
         }
-        .step-box {
-            border: 1px solid;
-            border-radius: 0.75rem;
-            padding: 1.25rem 1.75rem; /* 패딩 증가 */
-            margin: 0.75rem 0;
-            width: 100%;
-            max-width: 500px; /* 박스 최대 너비 증가 */
+
+        /* 제목 스타일 */
+        .document-pane h2 {
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* 부드러운 그림자 */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* 전환 효과 개선 */
-        }
-        .step-box:hover {
-            transform: translateY(-8px); /* 더 역동적인 호버 효과 */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        /* 각 단계별 박스 색상 정의 */
-        .step-box.start-end {
-            background-color: #d4edda; /* 시작/완료점: 연한 민트 녹색 */
-            border-color: #88c991;
-            font-weight: 600;
-            color: #28a745; /* 진한 녹색 텍스트 */
-        }
-        .step-one-color {
-            background-color: #e0f7fa; /* 단계 1: 연한 아쿠아 블루 */
-            border-color: #80deea;
-            color: #00838f; /* 진한 아쿠아 텍스트 */
-        }
-        .step-two-color {
-            background-color: #ffe0b2; /* 단계 2: 연한 오렌지 (따뜻한 분석 느낌) */
-            border-color: #ffb74d;
-            color: #e65100; /* 진한 오렌지 텍스트 */
-        }
-        .step-three-color {
-            background-color: #f3e5f5; /* 단계 3: 연한 보라 (피드백 수집 느낌) */
-            border-color: #ce93d8;
-            color: #6a1b9a; /* 진한 보라 텍스트 */
-        }
-        .step-four-color {
-            background-color: #bbdefb; /* 단계 4: 밝은 파랑 (정의/결정 느낌) */
-            border-color: #64b5f6;
-            color: #1976d2; /* 진한 파랑 텍스트 */
-        }
-
-        .step-title {
+            margin: 0;
+            padding: 15px;
+            color: #333;
             font-weight: 700;
-            font-size: 1.25rem; /* text-xl */
-            margin-bottom: 0.75rem;
-        }
-        .step-content {
-            font-size: 1rem; /* 기본 폰트 크기 */
-            line-height: 1.6;
-            text-align: left;
-            color: #333; /* 더 진한 텍스트 색상 */
-        }
-        .step-content strong {
-            color: #0d47a1; /* 강조 텍스트 색상 */
-        }
-        .arrow {
-            font-size: 2.5rem; /* 화살표 크기 증가 */
-            color: #616161;
-            margin: 0.75rem 0;
-            font-weight: 300;
-        }
-        .arrow-label {
-            font-size: 0.9rem; /* 라벨 크기 조정 */
-            color: #757575;
-            margin-top: -0.5rem;
-            margin-bottom: 0.75rem;
-            font-weight: 500;
+            font-size: 1.5rem;
+            background-color: #eef1f5;
+            border-bottom: 1px solid #ddd;
         }
 
-        /* 모바일 반응형 조정 */
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-            .container {
-                padding: 1.5rem;
-                border-radius: 1rem;
-            }
-            .step-box {
-                padding: 1rem 1.25rem;
-                max-width: 100%;
-            }
-            .step-title {
-                font-size: 1.125rem;
-            }
-            .step-content {
-                font-size: 0.9rem;
-            }
-            .arrow {
-                font-size: 2rem;
-            }
-            .arrow-label {
-                font-size: 0.8rem;
-            }
+        /* PDF 뷰어 프레임: 부모 컨테이너에 맞춰 크기 조정 */
+        .pdf-viewer {
+            flex-grow: 1;
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* PDF.js 뷰어의 도구 모음 전체 숨기기 */
+        #toolbarContainer {
+            display: none !important;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="w-full flex justify-end mb-4">
-    <div class="bg-yellow-100 border border-yellow-400 text-yellow-800 text-sm px-4 py-2 rounded shadow">
-        ⚠️ 본 문서는 대외비 성격의 내부 자료 수신 전 단계로, 일부 내용이 생략된 간략본입니다.
-    </div>
-</div>
-
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center leading-tight">
-            전자계약시스템 개편 <br class="md:hidden"> 사전 검토 프로젝트 진행 구조
-        </h1>
-
-        <div class="step-box start-end">
-            <div class="step-title">시작점: 현행 시스템 비효율성 인지</div>
-            <div class="step-content">
-                <p><strong>주체:</strong> 각 팀 실무자 (특히 계약팀 담당자)</p>
-                <p><strong>내용:</strong> 기존 전자계약 시스템의 수정 권한 부재, 반려로 인한 업무 지연, 반려 상황 인지 어려움 등 고질적인 문제점을 현장에서 직접 경험하고 인지.</p>
-            </div>
-        </div>
-
-        <div class="arrow">↓</div>
-        <div class="arrow-label">문제 인식 단계</div>
-
-        <div class="step-box step-one-color">
-            <div class="step-title">단계 1: 프로젝트 초기 논의 및 파일럿 팀 구성</div>
-            <div class="step-content">
-                <p><strong>주체:</strong> 관리자 및 각 팀 실무자 (계약팀, 승인팀, 메뉴팀 등)</p>
-                <p><strong>내용:</strong> 현행 시스템 문제 해결 및 향후 개편을 위한 사전 검토 프로젝트 기획. 각 팀에서 업무 숙련 인원(실무자 12명 포함)을 선발하여 파일럿 팀 구성.</p>
-                <p><strong>목표:</strong> 개편의 필요성 구체화 및 요구사항 도출 기반 마련.</p>
-            </div>
-        </div>
-
-        <div class="arrow">↓</div>
-        <div class="arrow-label">기반 마련 단계</div>
-
-        <div class="step-box step-two-color">
-            <div class="step-title">단계 2: 현행 시스템 실무 환경 검토</div>
-            <div class="step-content">
-                <p><strong>주체:</strong> <strong>파일럿 팀원 (계약팀, 승인팀, 메뉴팀 실무자)</strong></p>
-                <p><strong>내용:</strong> <strong>사내 전산(DSM2/SUPER) 시스템</strong>을 활용하여 기존 전자계약 업무 수행 중 발생하는 구체적인 비효율성 지점, 불편 사항, 기능적 한계 등을 면밀히 파악.</p>
-                <p><strong>특징:</strong> 현장 사용자 관점에서 시스템 작동 방식 및 문제점 심층 분석.</p>
-            </div>
-        </div>
-
-        <div class="arrow">↓</div>
-        <div class="arrow-label">피드백 도출 단계</div>
-
-        <div class="step-box step-three-color">
-            <div class="step-title">단계 3: 현장 피드백 수집 및 개선 의견 도출</div>
-            <div class="step-content">
-                <p><strong>주체:</strong> <strong>파일럿 팀원</strong></p>
-                <p><strong>내용:</strong> 파악된 문제점 및 개선 필요 사항 구체화, 시스템 변경 의견 정리 (예: 수정 권한 부여). <strong>Slack 메신저, Cisco IP Phone</strong>을 활용하여 다른 팀원들과도 활발히 소통하며 다양한 관점의 피드백 취합.</p>
-                <p><strong>목표:</strong> 향후 시스템 개편 시 반영될 실질적 요구사항 정의.</p>
-            </div>
-        </div>
-
-        <div class="arrow">↓</div>
-        <div class="arrow-label">의견 취합 및 전달 단계</div>
-
-        <div class="step-box step-four-color">
-            <div class="step-title">단계 4: 피드백 취합 및 핵심 개선 과제 정의</div>
-            <div class="step-content">
-                <p><strong>주체:</strong> 관리자, 개발팀</p>
-                <p><strong>내용:</strong> 파일럿 팀으로부터 전달받은 상세 피드백을 체계적으로 취합하고 검토. <strong>전자계약 시스템 개편 핵심 개선 과제 및 기능 요구사항 명확히 정의 (예: 계약팀 직접 수정 권한 부여).</strong></p>
-                <p><strong>목표:</strong> 향후 시스템 개편 프로젝트 범위 및 방향성 설정.</p>
-            </div>
-        </div>
-
-        <div class="arrow">↓</div>
-        <div class="arrow-label">방향성 제시 단계</div>
-
-        <div class="step-box start-end">
-            <div class="step-title">완료점: 개편 방향성 수립 및 기반 마련</div>
-            <div class="step-content">
-                <p><strong>결과:</strong> 도출된 요구사항과 방향성이 실제 시스템 개편으로 이어져 반려율 감소, 승인 기간 단축(7일→3일), 입점 신청 효율화를 위한 중요한 기초 마련.</p>
-            </div>
+    <div class="document-container">
+        <div class="document-pane">
+            <h2>전자계약 원스탑 프로젝트</h2>
+            <!-- PDF.js 뷰어를 사용하여 단일 기획서 PDF를 표시 -->
+            <iframe class="pdf-viewer" src="./web/viewer.html?file=../전자계약서_원스탑.pdf#toolbar=0"></iframe>
         </div>
     </div>
 </body>
