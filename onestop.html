@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>전자계약 원스탑 프로젝트</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* 기본 스타일 및 폰트 설정 */
         body, html {
@@ -13,38 +12,32 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Noto Sans KR', sans-serif;
-            display: flex;
-            justify-content: center; /* 수평 중앙 정렬 */
-            align-items: center; /* 수직 중앙 정렬 */
-            background-color: #f0f2f5;
         }
-
-        /* 단일 문서 컨테이너: 화면 중앙에 배치 */
+        
+        /* 문서 컨테이너: 화면 전체를 채우도록 설정 */
         .document-container {
             display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 900px; /* 원하는 최대 너비 설정 */
-            height: 90vh; /* 화면 높이에 맞춤 */
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: #ffffff;
+            height: 100vh;
+            width: 100vw;
         }
-
+        
+        /* PDF 뷰어 창: 컨테이너에 맞춰 크기 조정 */
+        .document-pane {
+            flex: 1;
+            height: 100%;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        
         /* 제목 스타일 */
         .document-pane h2 {
             text-align: center;
-            margin: 0;
-            padding: 15px;
+            margin: 10px 0;
             color: #333;
-            font-weight: 700;
-            font-size: 1.5rem;
-            background-color: #eef1f5;
-            border-bottom: 1px solid #ddd;
         }
-
+        
         /* PDF 뷰어 프레임: 부모 컨테이너에 맞춰 크기 조정 */
         .pdf-viewer {
             flex-grow: 1;
@@ -63,7 +56,7 @@
     <div class="document-container">
         <div class="document-pane">
             <h2>전자계약 원스탑 프로젝트</h2>
-            <!-- PDF.js 뷰어를 사용하여 단일 기획서 PDF를 표시 -->
+            <!-- PDF.js 뷰어를 사용하여 전자계약서_원스탑.pdf를 표시 -->
             <iframe class="pdf-viewer" src="./web/viewer.html?file=../전자계약서_원스탑.pdf#toolbar=0"></iframe>
         </div>
     </div>
