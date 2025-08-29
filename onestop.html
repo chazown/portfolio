@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden;
+            /* overflow: hidden; 속성을 제거하여 스크롤 가능하게 함 */
             font-family: 'Noto Sans KR', sans-serif;
         }
 
@@ -52,9 +52,8 @@
     <div class="document-container">
         <div class="document-pane">
             <h2>전자계약 원스탑 프로젝트</h2>
-            <!-- PDF.js 뷰어를 사용하여 전자계약서_원스탑.pdf를 표시 -->
-            <!-- toolbar=0 옵션을 제거하여 툴바와 사이드바가 모두 표시되도록 함 -->
-            <iframe class="pdf-viewer" src="./web/viewer.html?file=../전자계약서_원스탑.pdf"></iframe>
+            <!-- src URL에 사이드바를 명시적으로 표시하는 옵션 추가 -->
+            <iframe class="pdf-viewer" src="./web/viewer.html?file=../전자계약서_원스탑.pdf&sidebar=1"></iframe>
         </div>
     </div>
 </body>
