@@ -51,8 +51,31 @@
         <div class="document-pane">
             <h2>전자계약 원스탑 프로젝트</h2>
             <!-- PDF.js 뷰어를 사용하여 contract.pdf를 표시 -->
-            <iframe class="pdf-viewer" src="./web/viewer.html?file=../contract.pdf"></iframe>
+            <iframe id="pdfViewerFrame" class="pdf-viewer" src="./web/viewer.html?file=../contract.pdf"></iframe>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('pdfViewerFrame');
+            // iframe이 완전히 로드될 때까지 기다립니다.
+            iframe.onload = () => {
+                try {
+                    const viewerApp = iframe.contentWindow.PDFViewerApplication;
+                    if (viewerApp && viewerApp.eventBus) {
+                        viewerApp.eventBus.on('documentloaded', () => {
+                            // 문서가 로드된 후 사이드바를 강제로 열고 목차 패널을 표시
+                            viewerApp.sidebarOpen = true;
+                            viewerApp.pdfSidebar.switchView('outline');
+                        });
+                        console.log('사이드바가 성공적으로 열렸습니다.');
+                    } else {
+                        console.error('PDF.js 뷰어 객체를 찾을 수 없습니다.');
+                    }
+                } catch (e) {
+                    console.error('iframe 내용에 접근하는 중 오류가 발생했습니다:', e);
+                }
+            };
+        });
+    </script>
 </body>
 </html>
