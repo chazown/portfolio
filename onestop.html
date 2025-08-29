@@ -13,14 +13,14 @@
             overflow: hidden;
             font-family: 'Noto Sans KR', sans-serif;
         }
-        
+
         /* 문서 컨테이너: 화면 전체를 채우도록 설정 */
         .document-container {
             display: flex;
             height: 100vh;
             width: 100vw;
         }
-        
+
         /* PDF 뷰어 창: 컨테이너에 맞춰 크기 조정 */
         .document-pane {
             flex: 1;
@@ -29,6 +29,7 @@
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
+            width: 100%; /* 너비를 100%로 설정하여 화면을 꽉 채움 */
         }
         
         /* 제목 스타일 */
@@ -45,11 +46,6 @@
             width: 100%;
             height: 100%;
         }
-
-        /* PDF.js 뷰어의 도구 모음 전체 숨기기 */
-        #toolbarContainer {
-            display: none !important;
-        }
     </style>
 </head>
 <body>
@@ -57,7 +53,8 @@
         <div class="document-pane">
             <h2>전자계약 원스탑 프로젝트</h2>
             <!-- PDF.js 뷰어를 사용하여 전자계약서_원스탑.pdf를 표시 -->
-            <iframe class="pdf-viewer" src="./web/viewer.html?file=../전자계약서_원스탑.pdf#toolbar=0"></iframe>
+            <!-- toolbar=0 옵션을 제거하여 툴바와 사이드바가 모두 표시되도록 함 -->
+            <iframe class="pdf-viewer" src="./web/viewer.html?file=../전자계약서_원스탑.pdf"></iframe>
         </div>
     </div>
 </body>
