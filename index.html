@@ -27,7 +27,8 @@ body, html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--main-bg-color);
     color: var(--text-color-light);
-    overflow: hidden; /* 스크롤바 제거 */
+    overflow: hidden; /* 스크롤 제거 */
+    height: 100vh;
 }
 
 .navbar-custom {
@@ -53,15 +54,15 @@ body, html {
     width: 100%;
 }
 
-/* 슬라이드 컨테이너 추가 */
+/* 슬라이드 컨테이너 */
 .slide-container {
     width: 100%;
-    height: 100vh; /* 화면 높이 전체 사용 */
+    height: 100vh;
     position: relative;
     overflow: hidden;
 }
 
-/* 각 슬라이드 페이지 스타일 */
+/* 각 슬라이드 */
 .slide-page {
     width: 100%;
     height: 100vh;
@@ -77,19 +78,19 @@ body, html {
     box-sizing: border-box;
     
     transition: transform 0.8s ease-in-out;
-    transform: translateX(100%); /* 기본적으로 화면 오른쪽에 위치 */
-    opacity: 0; 
+    transform: translateX(100%); /* 초기 오른쪽 위치 */
+    opacity: 0;
     visibility: hidden;
-    /* 스크롤 마진은 슬라이드 방식에서는 불필요하므로 삭제 */
 }
 
-/* 활성화된 슬라이드 페이지 */
+/* 활성화 슬라이드 */
 .slide-page.active {
-    transform: translateX(0); /* 화면 중앙으로 이동 */
-    opacity: 1; 
+    transform: translateX(0);
+    opacity: 1;
     visibility: visible;
 }
 
+/* 섹션 스타일 */
 .intro-section h1 {
     font-size:3.8rem;
     margin-bottom:15px;
@@ -104,13 +105,12 @@ body, html {
     text-shadow:1px 1px 3px var(--shadow-color);
 }
 
-/* 섹션 제목 스타일 (중앙 정렬) */
 .section-title {
     font-size:2.5rem;
     font-weight:600;
     color: var(--accent-color);
     margin:50px auto 30px auto;
-    text-align:center; /* 텍스트를 중앙으로 정렬 */
+    text-align:center;
     max-width:1000px;
     width: 90%;
 }
@@ -141,11 +141,10 @@ body, html {
     justify-content:center;
     font-size:0.9rem;
     color:#fff;
-    overflow: hidden; /* 이미지가 밖으로 나가지 않도록 설정 */
-    transition: box-shadow 0.5s ease-in-out, border 0.5s ease-in-out; /* 부드러운 전환 효과 추가 */
+    overflow: hidden;
+    transition: box-shadow 0.5s ease-in-out, border 0.5s ease-in-out;
 }
 
-/* 이미지가 로드되면 테두리 제거 및 박스 섀도우 효과 추가 */
 .profile-card .photo.photo-loaded {
     border: none;
     box-shadow: 0 0 20px 5px var(--accent-color); 
@@ -165,16 +164,14 @@ body, html {
     line-height:1.6;
 }
 
-/* 프로필 구분선 */
 .profile-divider {
-    width: 2px; /* 구분선 두께 */
-    height: 150px; /* 구분선 높이 */
+    width: 2px;
+    height: 150px;
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 1px;
     margin: 0 10px;
 }
 
-/* 핵심 키워드 스타일 */
 .profile-keywords {
     font-size: 1.2rem;
     font-weight: 500;
@@ -183,7 +180,7 @@ body, html {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: flex-start; /* 왼쪽 정렬로 변경 */
+    justify-content: flex-start;
 }
 
 /* 프로젝트 카드 */
@@ -206,7 +203,7 @@ body, html {
     flex-direction:column;
     justify-content:space-between;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 45%; /* 데스크톱에서 너비 통일 */
+    width: 45%;
     min-width:300px;
     max-width:600px;
 }
@@ -253,30 +250,7 @@ body, html {
     transform: translateY(-3px);
 }
 
-.icon-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-    flex-wrap: wrap;
-}
-
-/* 아이콘과 텍스트를 함께 배치하기 위한 스타일 */
-.tech-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.8rem;
-    color: #cccccc;
-    text-align: center;
-    margin: 5px;
-}
-
-.tech-item i {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-}
-
+/* 테이블 */
 .tech-table {
     margin: 0 auto 50px auto;
     border-collapse: collapse;
@@ -299,6 +273,7 @@ body, html {
     font-weight:600;
 }
 
+/* 연락처 */
 .contact-info {
     text-align:center;
     margin:50px 0;
@@ -314,13 +289,14 @@ body, html {
     color: var(--accent-color);
 }
 
+/* 모바일 대응 */
 @media(max-width:767.98px) {
     .intro-section h1 { font-size:2.2rem; }
     .intro-section p { font-size:1.2rem; }
     .project-card { width:100%; }
     .tech-table { width:100%; }
     .profile-card { flex-direction:column; text-align:center; }
-    .profile-card .profile-divider { display: none; } /* 모바일에서 구분선 숨기기 */
+    .profile-card .profile-divider { display: none; }
     .profile-card .profile-text { margin-top:20px; }
 }
 </style>
@@ -359,132 +335,43 @@ body, html {
     </section>
 
     <section id="techstack" class="slide-page">
-    <h2 class="section-title">기술스택</h2>
-    <table class="tech-table">
-        <tr>
-            <th>분류</th>
-            <th>기술</th>
-            <th>설명</th>
-        </tr>
-        <tr>
-            <td rowspan="7">네트워크</td>
-            <td>SSH</td>
-            <td>서버 원격 접속 및 보안 통신</td>
-        </tr>
-        <tr><td>DHCP</td><td>IP 주소 자동 할당 및 네트워크 자원 관리</td></tr>
-        <tr><td>VLAN</td><td>네트워크 논리적 분리로 보안성과 효율성 확보</td></tr>
-        <tr><td>Frame-Relay</td><td>가상 전용 회선을 통한 빠른 데이터 전송</td></tr>
-        <tr><td>RIPv2</td><td>중·소규모 네트워크에서의 동적 라우팅</td></tr>
-        <tr><td>Area (OSPF Area)</td><td>대규모 네트워크 영역 라우팅 효율화</td></tr>
-        <tr><td>Port-Security</td><td>스위치 포트별 허용 MAC 주소 제한으로 보안 강화</td></tr>
-
-        <tr>
-            <td rowspan="9">서버</td>
-            <td>DNS</td><td>도메인 이름과 IP 주소 매핑</td>
-        </tr>
-        <tr><td>Apache</td><td>웹 서버 운영</td></tr>
-        <tr><td>WordPress</td><td>웹사이트 및 블로그 CMS 구축</td></tr>
-        <tr><td>Roundcube</td><td>웹메일 클라이언트 운영</td></tr>
-        <tr><td>MariaDB</td><td>데이터베이스 관리</td></tr>
-        <tr><td>phpMyAdmin</td><td>웹 기반 DB 관리 툴</td></tr>
-        <tr><td>RAID</td><td>디스크 중복화로 안정성과 성능 확보</td></tr>
-        <tr><td>Monitorix</td><td>시스템 리소스 모니터링</td></tr>
-        <tr><td>MRTG / Cacti</td><td>네트워크 트래픽 모니터링</td></tr>
-
-        <tr>
-            <td rowspan="9">보안</td>
-            <td>ELK (Elasticsearch, Logstash, Kibana)</td><td>로그 수집·분석·시각화</td>
-        </tr>
-        <tr><td>Postfix</td><td>메일 전송 서버</td></tr>
-        <tr><td>Dovecot</td><td>메일 수신 서버</td></tr>
-        <tr><td>Firewalld</td><td>리눅스 환경 방화벽 관리</td></tr>
-        <tr><td>ASAv</td><td>Cisco ASA 가상 방화벽 (접근제어·IPS)</td></tr>
-        <tr><td>pfSense</td><td>오픈소스 방화벽 및 라우터 솔루션</td></tr>
-        <tr><td>Security Onion</td><td>침입 탐지 및 로그 분석 플랫폼</td></tr>
-        <tr><td>SOAR</td><td>보안 자동화 및 대응 관리</td></tr>
-        <tr><td>Snort / Suricata</td><td>네트워크 침입 탐지/차단 시스템 (IDS/IPS)</td></tr>
-
-        <tr>
-            <td rowspan="4">모의해킹</td>
-            <td>Nmap</td><td>네트워크 포트 스캐닝 및 서비스 탐지</td>
-        </tr>
-        <tr><td>Hping3</td><td>패킷 조작 및 네트워크 테스트</td></tr>
-        <tr><td>MSFvenom</td><td>페이로드 제작 도구 (Metasploit Framework)</td></tr>
-        <tr><td>Hydra</td><td>무차별 대입 공격을 통한 계정 취약성 점검</td></tr>
-    </table>
+        <h2 class="section-title">기술스택</h2>
+        <table class="tech-table">
+            <tr><th>분류</th><th>기술</th><th>설명</th></tr>
+            <tr><td rowspan="3">네트워크</td><td>SSH</td><td>서버 원격 접속</td></tr>
+            <tr><td>DHCP</td><td>IP 자동 할당</td></tr>
+            <tr><td>VLAN</td><td>논리적 분리</td></tr>
+            <tr><td rowspan="3">서버</td><td>DNS</td><td>도메인 매핑</td></tr>
+            <tr><td>Apache</td><td>웹 서버 운영</td></tr>
+            <tr><td>MariaDB</td><td>DB 관리</td></tr>
+            <tr><td rowspan="3">보안</td><td>pfSense</td><td>방화벽 및 라우터</td></tr>
+            <tr><td>ELK</td><td>로그 수집/분석</td></tr>
+            <tr><td>Snort</td><td>IDS/IPS</td></tr>
+        </table>
     </section>
 
     <section id="projects" class="slide-page">
-    <h2 class="section-title">프로젝트</h2>
-    <div class="project-grid">
-        <div class="project-card">
-            <h3>IaC 보안 자동화 구축</h3>
-            <p>Ansible과 SOAR를 이용하여 보안 위협 대응을 자동화</p>
-            <div class="project-buttons">
-                <a href="https://chazown.github.io/portfolio/security" class="btn" target="_blank">
-                    <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
-                </a>
+        <h2 class="section-title">프로젝트</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>IaC 보안 자동화 구축</h3>
+                <p>Ansible과 SOAR를 이용하여 보안 위협 대응을 자동화</p>
+                <div class="project-buttons">
+                    <a href="https://chazown.github.io/portfolio/security" class="btn" target="_blank">
+                        <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
+                    </a>
+                </div>
             </div>
-            <div class="icon-container">
-                <div class="tech-item">
-                    <i class="bi bi-ubuntu" style="color:#f39c12;" title="Linux"></i>
-                    <span>Linux</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-filetype-py" style="color:#3498db;" title="Python"></i>
-                    <span>Python</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-gear-fill" style="color:#e67e22;" title="Ansible"></i>
-                    <span>Ansible</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-diagram-3-fill" style="color:#2ecc71;" title="SOAR"></i>
-                    <span>SOAR</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-binoculars-fill" style="color:#9b59b6;" title="Elasticsearch"></i>
-                    <span>Elasticsearch</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-shield-fill-plus" style="color:#2c3e50;" title="방화벽"></i>
-                    <span>방화벽</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-lightning-charge-fill" style="color:#e74c3c;" title="Wireshark"></i>
-                    <span>Wireshark</span>
+            <div class="project-card">
+                <h3>전자계약 시스템 리뉴얼</h3>
+                <p>지연없는 승인을 위한 시스템 개편 사전 점검</p>
+                <div class="project-buttons">
+                    <a href="https://chazown.github.io/portfolio/onestop" class="btn" target="_blank">
+                        <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
+                    </a>
                 </div>
             </div>
         </div>
-
-        <div class="project-card">
-            <h3>전자계약 시스템 리뉴얼</h3>
-            <p>지연없는 승인을 위한 시스템 개편 사전 점검</p>
-            <div class="project-buttons">
-                <a href="https://chazown.github.io/portfolio/onestop" class="btn" target="_blank">
-                    <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
-                </a>
-            </div>
-            <div class="icon-container">
-                <div class="tech-item">
-                    <i class="bi bi-filetype-xlsx" style="color:#20774a;" title="Excel"></i>
-                    <span>Excel</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-database-fill" style="color:#4682b4;" title="SQL"></i>
-                    <span>SQL</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-chat-dots-fill" style="color:#3498db;" title="메신저"></i>
-                    <span>메신저</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-router-fill" style="color:#2c3e50;" title="Cisco"></i>
-                    <span>Cisco</span>
-                </div>
-            </div>
-        </div>
-    </div>
     </section>
 
     <section id="contact" class="contact-info slide-page">
@@ -498,26 +385,17 @@ body, html {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // 모든 네비게이션 링크를 가져옵니다.
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    // 모든 슬라이드 페이지를 가져옵니다.
     const slidePages = document.querySelectorAll('.slide-page');
 
     navLinks.forEach(link => {
         link.addEventListener('click', (event) => {
-            // 기본 링크 이동(스크롤) 동작을 막습니다.
             event.preventDefault();
-
-            // 클릭한 링크의 href 속성(#id)을 가져옵니다.
             const targetId = link.getAttribute('href');
-            
-            // 현재 활성화된 페이지에서 'active' 클래스를 제거합니다.
             const currentActive = document.querySelector('.slide-page.active');
             if (currentActive) {
                 currentActive.classList.remove('active');
             }
-
-            // 클릭한 링크의 대상 페이지에 'active' 클래스를 추가합니다.
             const targetPage = document.querySelector(targetId);
             if (targetPage) {
                 targetPage.classList.add('active');
