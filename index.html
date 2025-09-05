@@ -27,7 +27,6 @@ body, html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--main-bg-color);
     color: var(--text-color-light);
-    overflow: hidden; /* 스크롤바 제거 */
 }
 
 .navbar-custom {
@@ -53,41 +52,17 @@ body, html {
     width: 100%;
 }
 
-/* 슬라이드 컨테이너 추가 */
-.slide-container {
-    width: 100%;
-    height: 100vh; /* 화면 높이 전체 사용 */
-    position: relative;
-    overflow: hidden;
-}
-
-/* 각 슬라이드 페이지 스타일 */
-.slide-page {
-    width: 100%;
+.intro-section {
     height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 50px;
-    box-sizing: border-box;
-    
-    transition: transform 0.8s ease-in-out;
-    transform: translateX(100%); /* 기본적으로 화면 오른쪽에 위치 */
-    opacity: 0; 
-    visibility: hidden;
-    /* 스크롤 마진은 슬라이드 방식에서는 불필요하므로 삭제 */
-}
-
-/* 활성화된 슬라이드 페이지 */
-.slide-page.active {
-    transform: translateX(0); /* 화면 중앙으로 이동 */
-    opacity: 1; 
-    visibility: visible;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:50px;
+    box-sizing:border-box;
+    /* 스크롤 시 내비게이션 바에 가려지지 않도록 상단 여백 추가 */
+    scroll-margin-top: 80px; 
 }
 
 .intro-section h1 {
@@ -150,6 +125,7 @@ body, html {
     border: none;
     box-shadow: 0 0 20px 5px var(--accent-color); 
 }
+
 
 .profile-card .photo img {
     width:100%;
@@ -327,6 +303,7 @@ body, html {
 </head>
 <body>
 
+<!-- 네비게이션 -->
 <nav class="navbar navbar-expand-lg navbar-custom">
   <div class="container-fluid">
     <ul class="navbar-nav">
@@ -338,194 +315,173 @@ body, html {
   </div>
 </nav>
 
-<div class="slide-container">
-    <section id="intro" class="intro-section slide-page active">
-        <h1>안전한 미래를 위해 보안을 더하다.</h1>
-        <p>최적의 보안 컨설팅과 기술 지원으로 소중한 디지털 자산을 지켜드립니다.</p>
-        <div class="profile-card">
-            <div class="photo">
-                <img src="https://chazown.github.io/portfolio/image.png" alt="프로필 사진" 
-                     onload="this.parentElement.classList.add('photo-loaded')"
-                     onerror="this.onerror=null; this.src='https://placehold.co/200x200/536872/FFFFFF?text=Photo'; this.parentNode.style.borderStyle='dashed';">
-            </div>
-            <div class="profile-divider"></div>
-            <div class="profile-text">
-                <div class="profile-keywords">
-                    #보안 #server #cisco #sql #excel
-                </div>
-                보안 컨설팅 전문가를 목표로 항해 중인 윤여엘입니다.
-            </div>
+<!-- 소개 영역 (기존 소개와 프로필 섹션 병합) -->
+<section id="intro" class="intro-section" style="scroll-margin-top: 80px;">
+    <h1>안전한 미래를 위해 보안을 더하다.</h1>
+    <p>최적의 보안 컨설팅과 기술 지원으로 소중한 디지털 자산을 지켜드립니다.</p>
+    <!-- 프로필 카드 내용을 소개 섹션으로 이동 -->
+    <div class="profile-card">
+        <div class="photo">
+            <!-- 사진 로드에 성공하면 부모 요소에 'photo-loaded' 클래스를 추가합니다. -->
+            <img src="https://chazown.github.io/portfolio/image.png" alt="프로필 사진" 
+                 onload="this.parentElement.classList.add('photo-loaded')"
+                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/536872/FFFFFF?text=Photo'; this.parentNode.style.borderStyle='dashed';">
         </div>
-    </section>
-
-    <section id="techstack" class="slide-page">
-    <h2 class="section-title">기술스택</h2>
-    <table class="tech-table">
-        <tr>
-            <th>분류</th>
-            <th>기술</th>
-            <th>설명</th>
-        </tr>
-        <tr>
-            <td rowspan="7">네트워크</td>
-            <td>SSH</td>
-            <td>서버 원격 접속 및 보안 통신</td>
-        </tr>
-        <tr><td>DHCP</td><td>IP 주소 자동 할당 및 네트워크 자원 관리</td></tr>
-        <tr><td>VLAN</td><td>네트워크 논리적 분리로 보안성과 효율성 확보</td></tr>
-        <tr><td>Frame-Relay</td><td>가상 전용 회선을 통한 빠른 데이터 전송</td></tr>
-        <tr><td>RIPv2</td><td>중·소규모 네트워크에서의 동적 라우팅</td></tr>
-        <tr><td>Area (OSPF Area)</td><td>대규모 네트워크 영역 라우팅 효율화</td></tr>
-        <tr><td>Port-Security</td><td>스위치 포트별 허용 MAC 주소 제한으로 보안 강화</td></tr>
-
-        <tr>
-            <td rowspan="9">서버</td>
-            <td>DNS</td><td>도메인 이름과 IP 주소 매핑</td>
-        </tr>
-        <tr><td>Apache</td><td>웹 서버 운영</td></tr>
-        <tr><td>WordPress</td><td>웹사이트 및 블로그 CMS 구축</td></tr>
-        <tr><td>Roundcube</td><td>웹메일 클라이언트 운영</td></tr>
-        <tr><td>MariaDB</td><td>데이터베이스 관리</td></tr>
-        <tr><td>phpMyAdmin</td><td>웹 기반 DB 관리 툴</td></tr>
-        <tr><td>RAID</td><td>디스크 중복화로 안정성과 성능 확보</td></tr>
-        <tr><td>Monitorix</td><td>시스템 리소스 모니터링</td></tr>
-        <tr><td>MRTG / Cacti</td><td>네트워크 트래픽 모니터링</td></tr>
-
-        <tr>
-            <td rowspan="9">보안</td>
-            <td>ELK (Elasticsearch, Logstash, Kibana)</td><td>로그 수집·분석·시각화</td>
-        </tr>
-        <tr><td>Postfix</td><td>메일 전송 서버</td></tr>
-        <tr><td>Dovecot</td><td>메일 수신 서버</td></tr>
-        <tr><td>Firewalld</td><td>리눅스 환경 방화벽 관리</td></tr>
-        <tr><td>ASAv</td><td>Cisco ASA 가상 방화벽 (접근제어·IPS)</td></tr>
-        <tr><td>pfSense</td><td>오픈소스 방화벽 및 라우터 솔루션</td></tr>
-        <tr><td>Security Onion</td><td>침입 탐지 및 로그 분석 플랫폼</td></tr>
-        <tr><td>SOAR</td><td>보안 자동화 및 대응 관리</td></tr>
-        <tr><td>Snort / Suricata</td><td>네트워크 침입 탐지/차단 시스템 (IDS/IPS)</td></tr>
-
-        <tr>
-            <td rowspan="4">모의해킹</td>
-            <td>Nmap</td><td>네트워크 포트 스캐닝 및 서비스 탐지</td>
-        </tr>
-        <tr><td>Hping3</td><td>패킷 조작 및 네트워크 테스트</td></tr>
-        <tr><td>MSFvenom</td><td>페이로드 제작 도구 (Metasploit Framework)</td></tr>
-        <tr><td>Hydra</td><td>무차별 대입 공격을 통한 계정 취약성 점검</td></tr>
-    </table>
-    </section>
-
-    <section id="projects" class="slide-page">
-    <h2 class="section-title">프로젝트</h2>
-    <div class="project-grid">
-        <div class="project-card">
-            <h3>IaC 보안 자동화 구축</h3>
-            <p>Ansible과 SOAR를 이용하여 보안 위협 대응을 자동화</p>
-            <div class="project-buttons">
-                <a href="https://chazown.github.io/portfolio/security" class="btn" target="_blank">
-                    <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
-                </a>
+        <div class="profile-divider"></div>
+        <div class="profile-text">
+            <div class="profile-keywords">
+                #보안 #server #cisco #sql #excel
             </div>
-            <div class="icon-container">
-                <div class="tech-item">
-                    <i class="bi bi-ubuntu" style="color:#f39c12;" title="Linux"></i>
-                    <span>Linux</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-filetype-py" style="color:#3498db;" title="Python"></i>
-                    <span>Python</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-gear-fill" style="color:#e67e22;" title="Ansible"></i>
-                    <span>Ansible</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-diagram-3-fill" style="color:#2ecc71;" title="SOAR"></i>
-                    <span>SOAR</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-binoculars-fill" style="color:#9b59b6;" title="Elasticsearch"></i>
-                    <span>Elasticsearch</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-shield-fill-plus" style="color:#2c3e50;" title="방화벽"></i>
-                    <span>방화벽</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-lightning-charge-fill" style="color:#e74c3c;" title="Wireshark"></i>
-                    <span>Wireshark</span>
-                </div>
-            </div>
+            보안 컨설팅 전문가를 목표로 항해 중인 윤여엘입니다.
         </div>
+    </div>
+</section>
 
-        <div class="project-card">
-            <h3>전자계약 시스템 리뉴얼</h3>
-            <p>지연없는 승인을 위한 시스템 개편 사전 점검</p>
-            <div class="project-buttons">
-                <a href="https://chazown.github.io/portfolio/onestop" class="btn" target="_blank">
-                    <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
-                </a>
+<!-- 기술스택 영역 -->
+<section id="techstack" style="scroll-margin-top: 80px;">
+<h2 class="section-title">기술스택</h2>
+<table class="tech-table">
+    <tr>
+        <th>분류</th>
+        <th>기술</th>
+        <th>설명</th>
+    </tr>
+    <!-- 네트워크 -->
+    <tr>
+        <td rowspan="7">네트워크</td>
+        <td>SSH</td>
+        <td>서버 원격 접속 및 보안 통신</td>
+    </tr>
+    <tr><td>DHCP</td><td>IP 주소 자동 할당 및 네트워크 자원 관리</td></tr>
+    <tr><td>VLAN</td><td>네트워크 논리적 분리로 보안성과 효율성 확보</td></tr>
+    <tr><td>Frame-Relay</td><td>가상 전용 회선을 통한 빠른 데이터 전송</td></tr>
+    <tr><td>RIPv2</td><td>중·소규모 네트워크에서의 동적 라우팅</td></tr>
+    <tr><td>Area (OSPF Area)</td><td>대규모 네트워크 영역 라우팅 효율화</td></tr>
+    <tr><td>Port-Security</td><td>스위치 포트별 허용 MAC 주소 제한으로 보안 강화</td></tr>
+
+    <!-- 서버 -->
+    <tr>
+        <td rowspan="9">서버</td>
+        <td>DNS</td><td>도메인 이름과 IP 주소 매핑</td>
+    </tr>
+    <tr><td>Apache</td><td>웹 서버 운영</td></tr>
+    <tr><td>WordPress</td><td>웹사이트 및 블로그 CMS 구축</td></tr>
+    <tr><td>Roundcube</td><td>웹메일 클라이언트 운영</td></tr>
+    <tr><td>MariaDB</td><td>데이터베이스 관리</td></tr>
+    <tr><td>phpMyAdmin</td><td>웹 기반 DB 관리 툴</td></tr>
+    <tr><td>RAID</td><td>디스크 중복화로 안정성과 성능 확보</td></tr>
+    <tr><td>Monitorix</td><td>시스템 리소스 모니터링</td></tr>
+    <tr><td>MRTG / Cacti</td><td>네트워크 트래픽 모니터링</td></tr>
+
+    <!-- 보안 -->
+    <tr>
+        <td rowspan="9">보안</td>
+        <td>ELK (Elasticsearch, Logstash, Kibana)</td><td>로그 수집·분석·시각화</td>
+    </tr>
+    <tr><td>Postfix</td><td>메일 전송 서버</td></tr>
+    <tr><td>Dovecot</td><td>메일 수신 서버</td></tr>
+    <tr><td>Firewalld</td><td>리눅스 환경 방화벽 관리</td></tr>
+    <tr><td>ASAv</td><td>Cisco ASA 가상 방화벽 (접근제어·IPS)</td></tr>
+    <tr><td>pfSense</td><td>오픈소스 방화벽 및 라우터 솔루션</td></tr>
+    <tr><td>Security Onion</td><td>침입 탐지 및 로그 분석 플랫폼</td></tr>
+    <tr><td>SOAR</td><td>보안 자동화 및 대응 관리</td></tr>
+    <tr><td>Snort / Suricata</td><td>네트워크 침입 탐지/차단 시스템 (IDS/IPS)</td></tr>
+
+    <!-- 모의해킹 -->
+    <tr>
+        <td rowspan="4">모의해킹</td>
+        <td>Nmap</td><td>네트워크 포트 스캐닝 및 서비스 탐지</td>
+    </tr>
+    <tr><td>Hping3</td><td>패킷 조작 및 네트워크 테스트</td></tr>
+    <tr><td>MSFvenom</td><td>페이로드 제작 도구 (Metasploit Framework)</td></tr>
+    <tr><td>Hydra</td><td>무차별 대입 공격을 통한 계정 취약성 점검</td></tr>
+</table>
+</section>
+
+<!-- 프로젝트 영역 -->
+<section id="projects" style="scroll-margin-top: 80px;">
+<h2 class="section-title">프로젝트</h2>
+<div class="project-grid">
+    <div class="project-card">
+        <h3>IaC 보안 자동화 구축</h3>
+        <p>Ansible과 SOAR를 이용하여 보안 위협 대응을 자동화</p>
+        <div class="project-buttons">
+            <a href="https://chazown.github.io/portfolio/security" class="btn" target="_blank">
+                <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
+            </a>
+        </div>
+        <div class="icon-container">
+            <!-- 아이콘과 텍스트를 함께 표시 -->
+            <div class="tech-item">
+                <i class="bi bi-ubuntu" style="color:#f39c12;" title="Linux"></i>
+                <span>Linux</span>
             </div>
-            <div class="icon-container">
-                <div class="tech-item">
-                    <i class="bi bi-filetype-xlsx" style="color:#20774a;" title="Excel"></i>
-                    <span>Excel</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-database-fill" style="color:#4682b4;" title="SQL"></i>
-                    <span>SQL</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-chat-dots-fill" style="color:#3498db;" title="메신저"></i>
-                    <span>메신저</span>
-                </div>
-                <div class="tech-item">
-                    <i class="bi bi-router-fill" style="color:#2c3e50;" title="Cisco"></i>
-                    <span>Cisco</span>
-                </div>
+            <div class="tech-item">
+                <i class="bi bi-filetype-py" style="color:#3498db;" title="Python"></i>
+                <span>Python</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-gear-fill" style="color:#e67e22;" title="Ansible"></i>
+                <span>Ansible</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-diagram-3-fill" style="color:#2ecc71;" title="SOAR"></i>
+                <span>SOAR</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-binoculars-fill" style="color:#9b59b6;" title="Elasticsearch"></i>
+                <span>Elasticsearch</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-shield-fill-plus" style="color:#2c3e50;" title="방화벽"></i>
+                <span>방화벽</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-lightning-charge-fill" style="color:#e74c3c;" title="Wireshark"></i>
+                <span>Wireshark</span>
             </div>
         </div>
     </div>
-    </section>
 
-    <section id="contact" class="contact-info slide-page">
-        <p>
-            <i class="bi bi-person-fill" style="margin-right:8px;"></i> 윤여엘 &nbsp;&nbsp;
-            <i class="bi bi-telephone-fill" style="margin-right:8px;"></i> <a href="tel:010-4489-0511">010-4489-0511</a> &nbsp;&nbsp;
-            <i class="bi bi-envelope-fill" style="margin-right:8px;"></i> <a href="mailto:virtuetrail@kakao.com">virtuetrail@kakao.com</a>
-        </p>
-    </section>
+    <div class="project-card">
+        <h3>전자계약 시스템 리뉴얼</h3>
+        <p>지연없는 승인을 위한 시스템 개편 사전 점검</p>
+        <div class="project-buttons">
+            <a href="https://chazown.github.io/portfolio/onestop" class="btn" target="_blank">
+                <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
+            </a>
+        </div>
+        <div class="icon-container">
+            <!-- 아이콘과 텍스트를 함께 표시 -->
+            <div class="tech-item">
+                <i class="bi bi-filetype-xlsx" style="color:#20774a;" title="Excel"></i>
+                <span>Excel</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-database-fill" style="color:#4682b4;" title="SQL"></i>
+                <span>SQL</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-chat-dots-fill" style="color:#3498db;" title="메신저"></i>
+                <span>메신저</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-router-fill" style="color:#2c3e50;" title="Cisco"></i>
+                <span>Cisco</span>
+            </div>
+        </div>
+    </div>
 </div>
+</section>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // 모든 네비게이션 링크를 가져옵니다.
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    // 모든 슬라이드 페이지를 가져옵니다.
-    const slidePages = document.querySelectorAll('.slide-page');
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
-            // 기본 링크 이동(스크롤) 동작을 막습니다.
-            event.preventDefault();
-
-            // 클릭한 링크의 href 속성(#id)을 가져옵니다.
-            const targetId = link.getAttribute('href');
-            
-            // 현재 활성화된 페이지에서 'active' 클래스를 제거합니다.
-            const currentActive = document.querySelector('.slide-page.active');
-            if (currentActive) {
-                currentActive.classList.remove('active');
-            }
-
-            // 클릭한 링크의 대상 페이지에 'active' 클래스를 추가합니다.
-            const targetPage = document.querySelector(targetId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-        });
-    });
-});
-</script>
+<!-- 연락처 영역 -->
+<section id="contact" class="contact-info" style="scroll-margin-top: 80px;">
+    <p>
+        <i class="bi bi-person-fill" style="margin-right:8px;"></i> 윤여엘 &nbsp;&nbsp;
+        <i class="bi bi-telephone-fill" style="margin-right:8px;"></i> <a href="tel:010-4489-0511">010-4489-0511</a> &nbsp;&nbsp;
+        <i class="bi bi-envelope-fill" style="margin-right:8px;"></i> <a href="mailto:virtuetrail@kakao.com">virtuetrail@kakao.com</a>
+    </p>
+</section>
 
 </body>
 </html>
