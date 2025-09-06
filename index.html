@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
+/* 기존 스타일은 그대로 유지하고 필요한 부분만 수정 */
 :root {
     --main-bg-color: #2C3E50;
     --accent-color: #3498DB;
@@ -47,9 +48,9 @@ body, html {
     color: var(--accent-color);
 }
 
+/* width: 100%와 justify-content: center; 제거 */
 .navbar-nav {
-    justify-content: center;
-    width: 100%;
+    /* 기존 스타일 제거 */
 }
 
 .intro-section {
@@ -78,18 +79,16 @@ body, html {
     text-shadow:1px 1px 3px var(--shadow-color);
 }
 
-/* 섹션 제목 스타일 (중앙 정렬) */
 .section-title {
     font-size:2.5rem;
     font-weight:600;
     color: var(--accent-color);
     margin:50px auto 30px auto;
-    text-align:center; /* 텍스트를 중앙으로 정렬 */
+    text-align:center;
     max-width:1000px;
     width: 90%;
 }
 
-/* 프로필 카드 */
 .profile-card {
     display:flex;
     justify-content:center;
@@ -124,7 +123,6 @@ body, html {
     box-shadow: 0 0 20px 5px var(--accent-color);
 }
 
-
 .profile-card .photo img {
     width:100%;
     height:100%;
@@ -139,7 +137,6 @@ body, html {
     line-height:1.6;
 }
 
-/* 프로필 구분선 */
 .profile-divider {
     width: 2px;
     height: 150px;
@@ -148,7 +145,6 @@ body, html {
     margin: 0 10px;
 }
 
-/* 핵심 키워드 스타일 */
 .profile-keywords {
     font-size: 1.2rem;
     font-weight: 500;
@@ -160,7 +156,6 @@ body, html {
     justify-content: flex-start;
 }
 
-/* 프로젝트 카드 */
 .project-grid {
     display:flex;
     flex-wrap:wrap;
@@ -207,6 +202,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    order: 2; /* 아이콘 컨테이너 아래로 배치 */
 }
 
 .project-buttons .btn {
@@ -239,9 +235,9 @@ body, html {
     gap: 10px;
     margin-top: 25px;
     flex-wrap: wrap;
+    order: 1; /* 버튼 컨테이너 위로 배치 */
 }
 
-/* 아이콘과 텍스트를 함께 배치하기 위한 스타일 */
 .tech-item {
     display: flex;
     flex-direction: column;
@@ -307,14 +303,19 @@ body, html {
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-custom">
+<nav class="navbar navbar-expand-md navbar-custom">
   <div class="container-fluid">
-    <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="#intro">소개</a></li>
-      <li class="nav-item"><a class="nav-link" href="#techstack">기술스택</a></li>
-      <li class="nav-item"><a class="nav-link" href="#projects">프로젝트</a></li>
-      <li class="nav-item"><a class="nav-link" href="#contact">연락처</a></li>
-    </ul>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#intro">소개</a></li>
+        <li class="nav-item"><a class="nav-link" href="#techstack">기술스택</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">프로젝트</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">연락처</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -399,11 +400,6 @@ body, html {
     <div class="project-card">
         <h3>IaC 보안 자동화 구축</h3>
         <p>Ansible과 SOAR를 이용하여 보안 위협 대응을 자동화</p>
-        <div class="project-buttons">
-            <a href="https://chazown.github.io/portfolio/security" class="btn" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
-            </a>
-        </div>
         <div class="icon-container">
             <div class="tech-item">
                 <i class="bi bi-ubuntu" style="color:#f39c12;" title="Linux"></i>
@@ -434,16 +430,16 @@ body, html {
                 <span>Wireshark</span>
             </div>
         </div>
+        <div class="project-buttons">
+            <a href="https://chazown.github.io/portfolio/security" class="btn" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
+            </a>
+        </div>
     </div>
 
     <div class="project-card">
         <h3>전자계약 시스템 리뉴얼</h3>
         <p>지연없는 승인을 위한 시스템 개편 사전 점검</p>
-        <div class="project-buttons">
-            <a href="https://chazown.github.io/portfolio/onestop" class="btn" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
-            </a>
-        </div>
         <div class="icon-container">
             <div class="tech-item">
                 <i class="bi bi-filetype-xlsx" style="color:#20774a;" title="Excel"></i>
@@ -462,17 +458,31 @@ body, html {
                 <span>Cisco</span>
             </div>
         </div>
+        <div class="project-buttons">
+            <a href="https://chazown.github.io/portfolio/onestop" class="btn" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
+            </a>
+        </div>
     </div>
 </div>
 </section>
 
 <section id="contact" class="contact-info" style="scroll-margin-top: 80px;">
     <address>
-        <p>
-            <i class="bi bi-person-fill" style="margin-right:8px;"></i> 윤여엘 &nbsp;&nbsp;
-            <i class="bi bi-telephone-fill" style="margin-right:8px;"></i> <a href="tel:010-4489-0511">010-4489-0511</a> &nbsp;&nbsp;
-            <i class="bi bi-envelope-fill" style="margin-right:8px;"></i> <a href="mailto:virtuetrail@kakao.com">virtuetrail@kakao.com</a>
-        </p>
+        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+            <div class="d-flex align-items-center mb-2 mb-md-0 me-md-4">
+                <i class="bi bi-person-fill" style="margin-right:8px;"></i>
+                <span>윤여엘</span>
+            </div>
+            <div class="d-flex align-items-center mb-2 mb-md-0 me-md-4">
+                <i class="bi bi-telephone-fill" style="margin-right:8px;"></i>
+                <a href="tel:010-4489-0511">010-4489-0511</a>
+            </div>
+            <div class="d-flex align-items-center">
+                <i class="bi bi-envelope-fill" style="margin-right:8px;"></i>
+                <a href="mailto:virtuetrail@kakao.com">virtuetrail@kakao.com</a>
+            </div>
+        </div>
     </address>
 </section>
 
