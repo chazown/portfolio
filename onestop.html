@@ -10,6 +10,8 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            /* 스크롤 방지 */
+            overflow: hidden; 
             font-family: 'Noto Sans KR', sans-serif;
         }
 
@@ -20,9 +22,10 @@
             width: 100vw;
         }
 
-        /* PDF 뷰어 창: 컨테이너에 맞춰 크기 조정 */
+        /* PDF 뷰어 창: 컨테이너에 맞춰 크기 조정 (화면 전체 사용) */
         .document-pane {
-            flex: 1;
+            /* flex: 1; 대신 flex: 1 1 100%; 로 명확히 지정하여 화면 전체 사용 */
+            flex: 1 1 100%; 
             height: 100%;
             border: 1px solid #ddd;
             box-sizing: border-box;
@@ -44,38 +47,25 @@
             width: 100%;
             height: 100%;
         }
+        
+        /* 뷰어 내부의 도구 모음을 숨기려면 아래 CSS를 유지할 수 있지만, 
+           사이드바 버튼도 함께 숨겨질 수 있으므로 주석 처리했습니다. */
+        /* #toolbarContainer {
+             display: none !important;
+        } */
     </style>
 </head>
 <body>
     <div class="document-container">
         <div class="document-pane">
             <h2>전자계약 원스탑 프로젝트</h2>
-            <!-- PDF.js 뷰어를 사용하여 contract.pdf를 표시 -->
-            <iframe id="pdfViewerFrame" class="pdf-viewer" src="./web/viewer.html?file=../contract.pdf"></iframe>
+            
+            <iframe 
+                id="pdfViewerFrame" 
+                class="pdf-viewer" 
+                src="./web/viewer.html?file=../contract.pdf#pagemode=bookmarks&sidebar=1">
+            </iframe>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const iframe = document.getElementById('pdfViewerFrame');
-            // iframe이 완전히 로드될 때까지 기다립니다.
-            iframe.onload = () => {
-                try {
-                    const viewerApp = iframe.contentWindow.PDFViewerApplication;
-                    if (viewerApp && viewerApp.eventBus) {
-                        viewerApp.eventBus.on('documentloaded', () => {
-                            // 문서가 로드된 후 사이드바를 강제로 열고 목차 패널을 표시
-                            viewerApp.sidebarOpen = true;
-                            viewerApp.pdfSidebar.switchView('outline');
-                        });
-                        console.log('사이드바가 성공적으로 열렸습니다.');
-                    } else {
-                        console.error('PDF.js 뷰어 객체를 찾을 수 없습니다.');
-                    }
-                } catch (e) {
-                    console.error('iframe 내용에 접근하는 중 오류가 발생했습니다:', e);
-                }
-            };
-        });
-    </script>
-</body>
+    </body>
 </html>
