@@ -1,81 +1,513 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>새로운 포트폴리오로 이동</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #2C3E50; /* 기존 포트폴리오의 배경색 유지 */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            flex-direction: column;
-            text-align: center;
-            color: white;
-        }
-        .container {
-            padding: 30px 40px;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: #3498DB; /* 기존 포트폴리오의 강조색 유지 */
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-        .time-display {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #E74C3C; /* 시선을 사로잡는 색상 */
-        }
-        a {
-            color: #3498DB;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>윤여엘 포트폴리오</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+/* 기존 스타일은 그대로 유지하고 필요한 부분만 수정 */
+:root {
+    --main-bg-color: #2C3E50;
+    --accent-color: #3498DB;
+    --card-bg-color: rgba(255, 255, 255, 0.1);
+    --text-color-light: white;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --button-primary-bg: var(--accent-color);
+    --button-primary-text: var(--text-color-light);
+    --button-hover-bg: #4FB0EE;
+    --button-padding: 15px 30px;
+}
+
+body, html {
+    margin:0;
+    padding:0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--main-bg-color);
+    color: var(--text-color-light);
+}
+
+.navbar-custom {
+    background-color: rgba(44, 62, 80, 0.95);
+    position: sticky;
+    top: 45px; /* 배너 높이만큼 아래로 내림 */
+    z-index: 999;
+    border-bottom: 2px solid var(--accent-color);
+}
+/* 새 배너 스타일 추가 */
+#new-portfolio-banner {
+    background-color: #E74C3C; /* 눈에 띄는 색상 */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: sticky; /* 상단에 고정 */
+    top: 0;
+    z-index: 1000; /* 네비게이션바보다 위로 */
+}
+
+#new-portfolio-banner a {
+    color: #F9E79F;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+/* --- */
+
+
+.navbar-custom .nav-link {
+    color: var(--text-color-light);
+    font-weight: 500;
+    margin: 0 20px;
+}
+
+.navbar-custom .nav-link:hover {
+    color: var(--accent-color);
+}
+
+/* width: 100%와 justify-content: center; 제거 */
+.navbar-nav {
+    /* 기존 스타일 제거 */
+}
+
+.intro-section {
+    height: 100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:50px;
+    box-sizing:border-box;
+    scroll-margin-top: 125px; /* 배너+네비게이션바 높이만큼 조정 */
+}
+
+.intro-section h1 {
+    font-size:3.8rem;
+    margin-bottom:15px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-shadow:2px 2px 5px var(--shadow-color);
+}
+
+.intro-section p {
+    font-size:1.7rem;
+    font-weight:300;
+    text-shadow:1px 1px 3px var(--shadow-color);
+}
+
+.section-title {
+    font-size:2.5rem;
+    font-weight:600;
+    color: var(--accent-color);
+    margin:50px auto 30px auto;
+    text-align:center;
+    max-width:1000px;
+    width: 90%;
+}
+
+.profile-card {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    max-width:1000px;
+    margin:50px auto;
+    padding:30px;
+    background-color: var(--card-bg-color);
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 8px 16px var(--shadow-color);
+    backdrop-filter: blur(5px);
+}
+
+.profile-card .photo {
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    border:2px dashed #fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.9rem;
+    color:#fff;
+    overflow: hidden;
+    transition: box-shadow 0.5s ease-in-out, border 0.5s ease-in-out;
+}
+
+.profile-card .photo.photo-loaded {
+    border: none;
+    box-shadow: 0 0 20px 5px var(--accent-color);
+}
+
+.profile-card .photo img {
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    border:none;
+}
+
+.profile-card .profile-text {
+    flex:1;
+    font-size:1.2rem;
+    line-height:1.6;
+}
+
+.profile-divider {
+    width: 2px;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 1px;
+    margin: 0 10px;
+}
+
+.profile-keywords {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.project-grid {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+}
+
+.project-card {
+    background-color: var(--card-bg-color);
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 8px 16px var(--shadow-color);
+    backdrop-filter: blur(5px);
+    border:1px solid rgba(255,255,255,0.2);
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-basis: calc(50% - 15px);
+    min-width:300px;
+    max-width:600px;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow:0 12px 24px rgba(0,0,0,0.5);
+}
+
+.project-card h3 {
+    font-size:2.2rem;
+    color: var(--accent-color);
+    margin-bottom:25px;
+}
+
+.project-card p {
+    font-size:1rem;
+    color:#cccccc;
+    margin-bottom:15px;
+}
+
+.project-buttons {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 2; /* 아이콘 컨테이너 아래로 배치 */
+}
+
+.project-buttons .btn {
+    font-size:1.2rem;
+    padding: var(--button-padding);
+    border-radius:40px;
+    background-color: var(--button-primary-bg);
+    border:2px solid var(--button-primary-bg);
+    color: var(--button-primary-text);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:500;
+    transition: all 0.3s ease;
+}
+
+.project-buttons .btn i {
+    margin-right:10px;
+}
+
+.project-buttons .btn:hover {
+    background-color: var(--button-hover-bg);
+    border-color: var(--button-hover-bg);
+    transform: translateY(-3px);
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+    order: 1; /* 버튼 컨테이너 위로 배치 */
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #cccccc;
+    text-align: center;
+    margin: 5px;
+}
+
+.tech-item i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.tech-table {
+    margin: 0 auto 50px auto;
+    border-collapse: collapse;
+    width: 90%;
+    max-width:1000px;
+}
+
+.tech-table th, .tech-table td {
+    border:1px solid #fff;
+    padding:12px 15px;
+    text-align:center;
+}
+
+.tech-table th {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.tech-table td:first-child {
+    font-weight:600;
+}
+
+.contact-info {
+    text-align:center;
+    margin:50px 0;
+}
+
+.contact-info a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: var(--accent-color);
+}
+
+@media(max-width:767.98px) {
+    .intro-section h1 { font-size:2.2rem; }
+    .intro-section p { font-size:1.2rem; }
+    .project-card { width:100%; }
+    .tech-table { width:100%; }
+    .profile-card { flex-direction:column; text-align:center; }
+    .profile-card .profile-divider { display: none; }
+    .profile-card .profile-text { margin-top:20px; }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>포트폴리오 페이지가 업데이트되었습니다.</h1>
-        <p>잠시 후 Canva 페이지로 자동 연결됩니다.</p>
-        <div class="time-display" id="countdown">3초 후 이동</div>
-        <p style="margin-top: 20px;">
-            자동 연결이 안 될 경우, <a href="https://www.canva.com/design/DAG30ghZl44/YFTRn49UtZtYSuIEScaILQ/edit?utm_content=DAG30ghZl44&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">여기를 클릭</a>하세요.
-        </p>
-    </div>
+<div id="new-portfolio-banner">
+    📣 포트폴리오가 업데이트되었습니다!
+    <a href="https://www.canva.com/design/DAG30ghZl44/pQnC1zuBmnJhcTHr6EdiWw/view?utm_content=DAG30ghZl44&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h5e652b54c6" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       style="color: #F9E79F;">
+        새로운 버전 보러가기 (클릭)
+    </a>
+</div>
+<nav class="navbar navbar-expand-md navbar-custom">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#intro">소개</a></li>
+        <li class="nav-item"><a class="nav-link" href="#techstack">기술스택</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">프로젝트</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">연락처</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-    <script>
-        const redirectURL = "https://www.canva.com/design/DAG30ghZl44/YFTRn49UtZtYSuIEScaILQ/edit?utm_content=DAG30ghZl44&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton";
-        const delayInSeconds = 3; // 지연 시간 설정 (초)
-        let countdownElement = document.getElementById('countdown');
-        let remainingTime = delayInSeconds;
+<section id="intro" class="intro-section">
+    <h1>안전한 미래를 위해 보안을 더하다.</h1>
+    <p>최적의 보안 컨설팅과 기술 지원으로 소중한 디지털 자산을 지켜드립니다.</p>
+    <div class="profile-card">
+        <div class="photo">
+            <img src="https://chazown.github.io/portfolio/image.png" alt="프로필 사진"
+                 onload="this.parentElement.classList.add('photo-loaded')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23536872%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2225%22 fill=%22%23FFFFFF%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EPhoto%3C/text%3E%3C/svg%3E'; this.parentNode.style.borderStyle='dashed';">
+        </div>
+        <div class="profile-divider"></div>
+        <div class="profile-text">
+            <div class="profile-keywords">
+                #보안 #server #cisco #sql #excel
+            </div>
+            보안 컨설팅 전문가를 목표로 항해 중인 윤여엘입니다.
+        </div>
+    </div>
+</section>
 
-        // 카운트다운을 표시하고 리다이렉션하는 함수
-        function updateCountdown() {
-            if (remainingTime > 0) {
-                countdownElement.textContent = remainingTime + "초 후 이동";
-                remainingTime--;
-                setTimeout(updateCountdown, 1000); // 1초마다 업데이트
-            } else {
-                // 지연 시간이 끝나면 리다이렉션 실행
-                window.location.href = redirectURL;
-            }
-        }
+<section id="techstack" style="scroll-margin-top: 125px;">
+<h2 class="section-title">기술스택</h2>
+<table class="tech-table">
+    <tr>
+        <th>분류</th>
+        <th>기술</th>
+        <th>설명</th>
+    </tr>
+    <tr>
+        <td rowspan="7">네트워크</td>
+        <td>SSH</td>
+        <td>서버 원격 접속 및 보안 통신</td>
+    </tr>
+    <tr><td>DHCP</td><td>IP 주소 자동 할당 및 네트워크 자원 관리</td></tr>
+    <tr><td>VLAN</td><td>네트워크 논리적 분리로 보안성과 효율성 확보</td></tr>
+    <tr><td>Frame-Relay</td><td>가상 전용 회선을 통한 빠른 데이터 전송</td></tr>
+    <tr><td>RIPv2</td><td>중·소규모 네트워크에서의 동적 라우팅</td></tr>
+    <tr><td>Area (OSPF Area)</td><td>대규모 네트워크 영역 라우팅 효율화</td></tr>
+    <tr><td>Port-Security</td><td>스위치 포트별 허용 MAC 주소 제한으로 보안 강화</td></tr>
 
-        // 함수 실행 시작
-        updateCountdown();
-    </script>
+    <tr>
+        <td rowspan="9">서버</td>
+        <td>DNS</td><td>도메인 이름과 IP 주소 매핑</td>
+    </tr>
+    <tr><td>Apache</td><td>웹 서버 운영</td></tr>
+    <tr><td>WordPress</td><td>웹사이트 및 블로그 CMS 구축</td></tr>
+    <tr><td>Roundcube</td><td>웹메일 클라이언트 운영</td></tr>
+    <tr><td>MariaDB</td><td>데이터베이스 관리</td></tr>
+    <tr><td>phpMyAdmin</td><td>웹 기반 DB 관리 툴</td></tr>
+    <tr><td>RAID</td><td>디스크 중복화로 안정성과 성능 확보</td></tr>
+    <tr><td>Monitorix</td><td>시스템 리소스 모니터링</td></tr>
+    <tr><td>MRTG / Cacti</td><td>네트워크 트래픽 모니터링</td></tr>
+
+    <tr>
+        <td rowspan="9">보안</td>
+        <td>ELK (Elasticsearch, Logstash, Kibana)</td><td>로그 수집·분석·시각화</td>
+    </tr>
+    <tr><td>Postfix</td><td>메일 전송 서버</td></tr>
+    <tr><td>Dovecot</td><td>메일 수신 서버</td></tr>
+    <tr><td>Firewalld</td><td>리눅스 환경 방화벽 관리</td></tr>
+    <tr><td>ASAv</td><td>Cisco ASA 가상 방화벽 (접근제어·IPS)</td></tr>
+    <tr><td>pfSense</td><td>오픈소스 방화벽 및 라우터 솔루션</td></tr>
+    <tr><td>Security Onion</td><td>침입 탐지 및 로그 분석 플랫폼</td></tr>
+    <tr><td>SOAR</td><td>보안 자동화 및 대응 관리</td></tr>
+    <tr><td>Snort / Suricata</td><td>네트워크 침입 탐지/차단 시스템 (IDS/IPS)</td></tr>
+
+    <tr>
+        <td rowspan="4">모의해킹</td>
+        <td>Nmap</td><td>네트워크 포트 스캐닝 및 서비스 탐지</td>
+    </tr>
+    <tr><td>Hping3</td><td>패킷 조작 및 네트워크 테스트</td></tr>
+    <tr><td>MSFvenom</td><td>페이로드 제작 도구 (Metasploit Framework)</td></tr>
+    <tr><td>Hydra</td><td>무차별 대입 공격을 통한 계정 취약성 점검</td></tr>
+</table>
+</section>
+
+<section id="projects" style="scroll-margin-top: 125px;">
+<h2 class="section-title">프로젝트</h2>
+<div class="project-grid">
+    <div class="project-card">
+        <h3>IaC 보안 자동화 구축</h3>
+        <p>Ansible과 SOAR를 이용하여 보안 위협 대응을 자동화</p>
+        <div class="icon-container">
+            <div class="tech-item">
+                <i class="bi bi-ubuntu" style="color:#f39c12;" title="Linux"></i>
+                <span>Linux</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-filetype-py" style="color:#3498db;" title="Python"></i>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-gear-fill" style="color:#e67e22;" title="Ansible"></i>
+                <span>Ansible</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-diagram-3-fill" style="color:#2ecc71;" title="SOAR"></i>
+                <span>SOAR</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-binoculars-fill" style="color:#9b59b6;" title="Elasticsearch"></i>
+                <span>Elasticsearch</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-shield-fill-plus" style="color:#2c3e50;" title="방화벽"></i>
+                <span>방화벽</span>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-lightning-charge-fill" style="color:#e74c3c;" title="Wireshark"></i>
+                <span>Wireshark</span>
+            </div>
+        </div>
+        <div class="project-buttons">
+            <a href="https://chazown.github.io/portfolio/security" class="btn" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
+            </a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <h3>전자계약 시스템 리뉴얼</h3>
+        <p>지연없는 승인을 위한 시스템 개편 사전 점검</p>
+        <div class="icon-container">
+            <div class="tech-item">
+                <i class="bi bi-filetype-xlsx" style="color:#20774a;" title="Excel"></i>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-database-fill" style="color:#4682b4;" title="SQL"></i>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-chat-dots-fill" style="color:#3498db;" title="메신저"></i>
+            </div>
+            <div class="tech-item">
+                <i class="bi bi-router-fill" style="color:#2c3e50;" title="Cisco"></i>
+            </div>
+        </div>
+        <div class="project-buttons">
+            <a href="https://chazown.github.io/portfolio/onestop" class="btn" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-box-arrow-up-right"></i> 프로젝트 보기
+            </a>
+        </div>
+    </div>
+</div>
+</section>
+
+<section id="contact" class="contact-info" style="scroll-margin-top: 125px;">
+    <address>
+        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+            <div class="d-flex align-items-center mb-2 mb-md-0 me-md-4">
+                <i class="bi bi-person-fill" style="margin-right:8px;"></i>
+                <span>윤여엘</span>
+            </div>
+            <div class="d-flex align-items-center mb-2 mb-md-0 me-md-4">
+                <i class="bi bi-telephone-fill" style="margin-right:8px;"></i>
+                <a href="tel:010-4489-0511">010-4489-0511</a>
+            </div>
+            <div class="d-flex align-items-center">
+                <i class="bi bi-envelope-fill" style="margin-right:8px;"></i>
+                <a href="mailto:yeoel99@gmail.com">yeoel99@gmail.com</a>
+            </div>
+        </div>
+    </address>
+</section>
+
 </body>
 </html>
