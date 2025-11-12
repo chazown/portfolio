@@ -38,27 +38,39 @@ body, html {
     border-bottom: 2px solid var(--accent-color);
 }
 
-/* --- 리다이렉션 안내 모달/오버레이 스타일 --- */
+/* --- 리다이렉션 안내 모달/오버레이 스타일 (수정된 부분) --- */
 #redirect-overlay {
+    /* position: fixed는 레이아웃에 영향을 주지 않으므로 안전합니다. */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1001; /* 모든 콘텐츠 위에 표시 */
+    z-index: 10000; 
     flex-direction: column;
     text-align: center;
+    /* 레이아웃 깨짐 방지 핵심 속성: 
+       opacity: 0으로 투명하게 숨기고, visibility: hidden으로 마우스 이벤트를 차단합니다. */
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+#redirect-overlay.active {
+    /* active 클래스가 추가되면 보이게 합니다. */
+    opacity: 1;
+    visibility: visible;
 }
 
 #redirect-box {
     background-color: #2C3E50;
     padding: 40px 50px;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgba(52, 152, 219, 0.5); /* 강조색 그림자 */
+    box-shadow: 0 0 30px rgba(52, 152, 219, 0.6); 
     border: 2px solid var(--accent-color);
 }
 
@@ -76,14 +88,14 @@ body, html {
 #countdown {
     font-size: 2rem;
     font-weight: bold;
-    color: #F39C12; /* 타이머 강조색 */
+    color: #F39C12; 
     margin-bottom: 20px;
 }
 
 #cancel-button {
     padding: 12px 25px;
     font-size: 1rem;
-    background-color: #E74C3C; /* 취소 버튼 색상 */
+    background-color: #E74C3C; 
     border: none;
     border-radius: 5px;
     color: white;
@@ -96,7 +108,6 @@ body, html {
 }
 
 /* --- */
-
 
 .navbar-custom .nav-link {
     color: var(--text-color-light);
@@ -374,6 +385,7 @@ body, html {
             새 버전으로 바로 이동: 
             <a href="https://www.canva.com/design/DAG30ghZl44/pQnC1zuBmnJhcTHr6EdiWw/view?utm_content=DAG30ghZl44&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h5e652b54c6" 
                target="_blank" 
+               rel="noopener noreferrer"
                style="color: var(--accent-color); text-decoration: underline;">
                Canva 링크
             </a>
@@ -484,27 +496,21 @@ body, html {
             </div>
             <div class="tech-item">
                 <i class="bi bi-filetype-py" style="color:#3498db;" title="Python"></i>
-                <span>Python</span>
             </div>
             <div class="tech-item">
                 <i class="bi bi-gear-fill" style="color:#e67e22;" title="Ansible"></i>
-                <span>Ansible</span>
             </div>
             <div class="tech-item">
                 <i class="bi bi-diagram-3-fill" style="color:#2ecc71;" title="SOAR"></i>
-                <span>SOAR</span>
             </div>
             <div class="tech-item">
                 <i class="bi bi-binoculars-fill" style="color:#9b59b6;" title="Elasticsearch"></i>
-                <span>Elasticsearch</span>
             </div>
             <div class="tech-item">
                 <i class="bi bi-shield-fill-plus" style="color:#2c3e50;" title="방화벽"></i>
-                <span>방화벽</span>
             </div>
             <div class="tech-item">
                 <i class="bi bi-lightning-charge-fill" style="color:#e74c3c;" title="Wireshark"></i>
-                <span>Wireshark</span>
             </div>
         </div>
         <div class="project-buttons">
@@ -520,19 +526,15 @@ body, html {
         <div class="icon-container">
             <div class="tech-item">
                 <i class="bi bi-filetype-xlsx" style="color:#20774a;" title="Excel"></i>
-                <span>Excel</span>
             </div>
             <div class="tech-item">
                 <i class="bi bi-database-fill" style="color:#4682b4;" title="SQL"></i>
-                <span>SQL</span>
             </div>
             <div class="tech-item">
                 <i class="bi bi-chat-dots-fill" style="color:#3498db;" title="메신저"></i>
-                <span>메신저</span>
             </div>
             <div class="tech-item">
                 <i class="bi bi-router-fill" style="color:#2c3e50;" title="Cisco"></i>
-                <span>Cisco</span>
             </div>
         </div>
         <div class="project-buttons">
@@ -564,9 +566,8 @@ body, html {
 </section>
 
 <script>
-    // 캔바 'view' 모드 주소 (최종 확정)
     const redirectURL = "https://www.canva.com/design/DAG30ghZl44/pQnC1zuBmnJhcTHr6EdiWw/view?utm_content=DAG30ghZl44&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h5e652b54c6";
-    const delayInSeconds = 3; // 자동 이동 지연 시간
+    const delayInSeconds = 3; 
     let remainingTime = delayInSeconds;
     let timerId;
     
@@ -578,7 +579,7 @@ body, html {
         if (remainingTime > 0) {
             countdownElement.textContent = remainingTime + "초 후 이동";
             remainingTime--;
-            timerId = setTimeout(updateCountdown, 1000); // 1초마다 함수 재호출
+            timerId = setTimeout(updateCountdown, 1000);
         } else {
             // 시간이 다 되면 캔바로 자동 이동
             window.location.href = redirectURL;
@@ -588,12 +589,14 @@ body, html {
     // 2. 리다이렉션 취소 함수 (현재 페이지 유지)
     window.cancelRedirect = function() {
         clearTimeout(timerId); // 타이머 중지
-        overlay.style.display = 'none'; // 오버레이 숨기기
-        // 이제 사용자는 GitHub 포트폴리오를 계속 볼 수 있습니다.
+        // active 클래스를 제거하여 오버레이를 투명하게 숨기고 클릭 이벤트를 차단합니다.
+        overlay.classList.remove('active'); 
     }
 
-    // 페이지 로드 후 카운트다운 시작
+    // 3. 페이지 로드 후 실행
     window.onload = function() {
+        // active 클래스를 추가하여 오버레이를 보이게 합니다.
+        overlay.classList.add('active');
         updateCountdown();
     }
 </script>
